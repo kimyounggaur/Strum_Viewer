@@ -52,3 +52,9 @@ src/lib/                       # 리듬 시간 계산, IndexedDB 확장 구조
 정적 배포된 웹사이트의 `public` 폴더는 브라우저에서 직접 수정할 수 없습니다. 기본 이미지는 개발자가 프로젝트에 포함해 배포하고, 사용자 업로드 이미지는 IndexedDB 또는 서버 스토리지에 저장해야 합니다.
 
 `src/lib/customPatternStorage.ts`에는 IndexedDB 기반 사용자 업로드 확장 구조가 격리되어 있습니다. 공유/관리자 업로드가 필요하면 Supabase Storage 같은 서버 스토리지로 확장하는 것이 좋습니다.
+
+## 배포
+
+Production: https://strum-viewer.vercel.app
+
+Vercel 프로젝트 `strum-viewer`는 GitHub 저장소 `kimyounggaur/Strum_Viewer`의 `main` 브랜치와 연결되어 있습니다. `main`에 commit & push될 때마다 Vercel production 배포가 자동으로 생성됩니다.
