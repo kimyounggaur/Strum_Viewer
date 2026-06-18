@@ -114,6 +114,15 @@ export function PatternDetail({
         </div>
       </div>
 
+      {pattern.rhythm ? (
+        <KaraokeTrack
+          pattern={pattern}
+          progress={transportState.progress}
+          activeStrokeIndex={transportState.activeStrokeIndex}
+          isPlaying={transportState.isPlaying}
+        />
+      ) : null}
+
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
         <PatternImageViewer
           pattern={pattern}
@@ -138,15 +147,6 @@ export function PatternDetail({
           </div>
         </aside>
       </div>
-
-      {pattern.rhythm ? (
-        <KaraokeTrack
-          pattern={pattern}
-          progress={transportState.progress}
-          activeStrokeIndex={transportState.activeStrokeIndex}
-          isPlaying={transportState.isPlaying}
-        />
-      ) : null}
     </section>
   );
 }

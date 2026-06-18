@@ -58,11 +58,19 @@ export function formatBeatLabels(rhythm: StrumRhythm): string[] {
   const tripletLabels = ['1', '&', 'a'];
   const sixteenthLabels = ['1', 'e', '&', 'a'];
   const eighthLabels = ['1', '&'];
+  // 컴파운드(6/8 등) 한 박 = 점4분음표 = 16분음표 6칸. 8분음표 펄스는 0·2·4칸.
+  const compoundSixLabels = ['1', '', '&', '', 'a', ''];
 
   for (let beat = 0; beat < rhythm.beatsPerBar; beat += 1) {
     const base = String(beat + 1);
     const source =
-      rhythm.subdivision === 4 ? sixteenthLabels : rhythm.subdivision === 3 ? tripletLabels : eighthLabels;
+      rhythm.subdivision === 6
+        ? compoundSixLabels
+        : rhythm.subdivision === 4
+          ? sixteenthLabels
+          : rhythm.subdivision === 3
+            ? tripletLabels
+            : eighthLabels;
 
     for (let sub = 0; sub < rhythm.subdivision; sub += 1) {
       labels.push(sub === 0 ? base : source[sub] ?? String(sub + 1));
