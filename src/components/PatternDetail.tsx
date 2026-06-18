@@ -4,6 +4,7 @@ import { categoryById } from '../data/strumCategories';
 import type { StrumPattern } from '../data/strumTypes';
 import { getNeighborPatterns } from '../data/patterns';
 import { IconButton } from './IconButton';
+import { KaraokeTrack } from './KaraokeTrack';
 import { PatternImageViewer } from './PatternImageViewer';
 import { PracticePanel } from './PracticePanel';
 
@@ -137,6 +138,15 @@ export function PatternDetail({
           </div>
         </aside>
       </div>
+
+      {pattern.rhythm ? (
+        <KaraokeTrack
+          pattern={pattern}
+          progress={transportState.progress}
+          activeStrokeIndex={transportState.activeStrokeIndex}
+          isPlaying={transportState.isPlaying}
+        />
+      ) : null}
     </section>
   );
 }
