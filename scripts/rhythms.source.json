@@ -1330,7 +1330,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "high",
+    "confidence": "verified",
     "note": "verified: down-up swing on every beat"
   },
   {
@@ -1377,7 +1377,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "high",
+    "confidence": "verified",
     "note": "verified: full down-up swing, backbeat accents on 2 and 4"
   },
   {
@@ -1419,7 +1419,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "high",
+    "confidence": "verified",
     "note": "verified: beat3 downbeat tied (slur), played as up on 2& held into 3"
   },
   {
@@ -1448,7 +1448,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.78,
-    "confidence": "high",
+    "confidence": "verified",
     "note": "verified: four staccato quarter downstrokes only"
   },
   {
@@ -1491,7 +1491,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "high",
+    "confidence": "verified",
     "note": "verified: beat1 quarter down, beats 2-4 down-up swing, backbeat accents"
   },
   {
@@ -1529,7 +1529,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "high",
+    "confidence": "verified",
     "note": "verified: beat1 quarter down; beat3 tied (no 3& up); beats 2,4 down-up"
   },
   {
@@ -1593,7 +1593,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex02",
@@ -1652,7 +1652,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex03",
@@ -1711,7 +1711,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex04",
@@ -1770,7 +1770,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex05",
@@ -1829,7 +1829,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex06",
@@ -1888,7 +1888,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex07",
@@ -1947,7 +1947,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex08",
@@ -2006,7 +2006,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex09",
@@ -2065,7 +2065,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex10",
@@ -2124,7 +2124,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex11",
@@ -2183,7 +2183,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-rock_ex12",
@@ -2242,7 +2242,7 @@
     ],
     "imageLeftPad": 0.18,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex01",
@@ -2303,7 +2303,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex02",
@@ -2362,7 +2362,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex03",
@@ -2421,7 +2421,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex04",
@@ -2480,7 +2480,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex05",
@@ -2539,7 +2539,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex06",
@@ -2598,7 +2598,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex07",
@@ -2657,7 +2657,7 @@
     ],
     "imageLeftPad": 0.2,
     "imageRightPad": 0.93,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex08",
@@ -2716,7 +2716,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex09",
@@ -2775,7 +2775,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex10",
@@ -2834,7 +2834,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex11",
@@ -2893,7 +2893,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex12",
@@ -2928,7 +2928,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.9,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex13",
@@ -2987,7 +2987,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex14",
@@ -3046,7 +3046,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.92,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex15",
@@ -3105,7 +3105,7 @@
     ],
     "imageLeftPad": 0.2,
     "imageRightPad": 0.95,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "twelve-eight_ex16",
@@ -3140,7 +3140,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.9,
-    "confidence": "low-draft"
+    "confidence": "verified"
   },
   {
     "id": "slow-gogo_ex03",
@@ -3201,7 +3201,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.91,
-    "confidence": "med-draft"
+    "confidence": "low-approx"
   },
   {
     "id": "three-four_ex01",
@@ -3238,7 +3238,7 @@
     ],
     "imageLeftPad": 0.2,
     "imageRightPad": 0.88,
-    "confidence": "high"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex02",
@@ -3273,7 +3273,7 @@
     ],
     "imageLeftPad": 0.2,
     "imageRightPad": 0.88,
-    "confidence": "high"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex03",
@@ -3316,7 +3316,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.84,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex04",
@@ -3359,7 +3359,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.84,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex05",
@@ -3402,7 +3402,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.84,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex06",
@@ -3467,7 +3467,7 @@
     ],
     "imageLeftPad": 0.21,
     "imageRightPad": 0.86,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex07",
@@ -3518,7 +3518,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.84,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex08",
@@ -3569,7 +3569,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.84,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex09",
@@ -3620,7 +3620,7 @@
     ],
     "imageLeftPad": 0.22,
     "imageRightPad": 0.85,
-    "confidence": "med-draft"
+    "confidence": "verified"
   },
   {
     "id": "three-four_ex10",
@@ -3670,7 +3670,7 @@
     ],
     "imageLeftPad": 0.17,
     "imageRightPad": 0.9,
-    "confidence": "med",
+    "confidence": "verified",
     "note": "1-bar triplet study, all downstrokes (corrected from subagent 2-bar/16th approximation)"
   },
   {
@@ -3721,7 +3721,7 @@
     ],
     "imageLeftPad": 0.17,
     "imageRightPad": 0.9,
-    "confidence": "med",
+    "confidence": "verified",
     "note": "1-bar triplet study (sixteenth ornament on triplet not representable on subdiv-3 grid)"
   },
   {
@@ -3772,7 +3772,7 @@
     ],
     "imageLeftPad": 0.17,
     "imageRightPad": 0.9,
-    "confidence": "med",
+    "confidence": "verified",
     "note": "1-bar triplet study (middle-note sixteenth ornament not representable on subdiv-3 grid)"
   },
   {
@@ -3823,7 +3823,7 @@
     ],
     "imageLeftPad": 0.17,
     "imageRightPad": 0.9,
-    "confidence": "med",
+    "confidence": "verified",
     "note": "1-bar triplet study (last-note sixteenth ornament not representable on subdiv-3 grid)"
   }
 ]
