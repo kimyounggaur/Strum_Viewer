@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { AudioEngine } from '../audio/AudioEngine';
 import { schedulePattern } from '../audio/schedulePattern';
 import type { Instrument, StrumPattern } from '../data/strumTypes';
-import { barDuration } from '../lib/rhythm';
+import { loopDuration } from '../lib/rhythm';
 
 type TransportState = {
   isPlaying: boolean;
@@ -61,7 +61,7 @@ export function useTransport(pattern: StrumPattern): TransportState {
     const rhythm = currentPattern.rhythm;
 
     if (context && rhythm && latestRef.current.isPlaying) {
-      const duration = barDuration(rhythm, latestRef.current.bpm);
+      const duration = loopDuration(rhythm, latestRef.current.bpm);
       const rawProgress = duration > 0 ? (context.currentTime - engine.currentBarStartTime) / duration : 0;
       const nextProgress = Math.min(1, Math.max(0, rawProgress));
       setProgress(nextProgress);

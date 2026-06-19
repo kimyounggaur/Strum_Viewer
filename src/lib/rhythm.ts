@@ -14,6 +14,26 @@ export function barDuration(rhythm: StrumRhythm, bpm: number): number {
   return rhythm.beatsPerBar * secPerBeat(bpm);
 }
 
+/** Number of bars the pattern spans (defaults to 1 for legacy single-bar rhythms). */
+export function barCount(rhythm: StrumRhythm): number {
+  return Math.max(1, Math.round(rhythm.bars ?? 1));
+}
+
+/** Total beats in one full loop of the pattern (all bars). */
+export function loopBeats(rhythm: StrumRhythm): number {
+  return rhythm.beatsPerBar * barCount(rhythm);
+}
+
+/** Duration of one full loop of the pattern (all bars) in seconds. */
+export function loopDuration(rhythm: StrumRhythm, bpm: number): number {
+  return loopBeats(rhythm) * secPerBeat(bpm);
+}
+
+/** Grid cells across the entire loop (all bars). */
+export function cellsInLoop(rhythm: StrumRhythm): number {
+  return loopBeats(rhythm) * rhythm.subdivision;
+}
+
 export function stepToTime(step: number, rhythm: StrumRhythm, bpm: number): number {
   const beatDuration = secPerBeat(bpm);
   const beatIndex = Math.floor(step / rhythm.subdivision);
@@ -39,7 +59,7 @@ export function cellsInBar(rhythm: StrumRhythm): number {
 }
 
 export function progressToStep(progress: number, rhythm: StrumRhythm): number {
-  return Math.min(cellsInBar(rhythm) - 1, Math.floor(clamp(progress, 0, 0.9999) * cellsInBar(rhythm)));
+  return Math.min(cellsInLoop(rhythm) - 1, Math.floor(clamp(progress, 0, 0.9999) * cellsInLoop(rhythm)));
 }
 
 export function strokeXNorm(stroke: Stroke, rhythm: StrumRhythm): number {
@@ -49,7 +69,7 @@ export function strokeXNorm(stroke: Stroke, rhythm: StrumRhythm): number {
 
   const left = rhythm.imageLeftPad ?? 0.12;
   const right = rhythm.imageRightPad ?? 0.92;
-  const cells = Math.max(1, cellsInBar(rhythm) - 1);
+  const cells = Math.max(1, cellsInLoop(rhythm) - 1);
   return left + (right - left) * (stroke.step / cells);
 }
 
@@ -59,8 +79,8 @@ export function formatBeatLabels(rhythm: StrumRhythm): string[] {
   const sixteenthLabels = ['1', 'e', '&', 'a'];
   const eighthLabels = ['1', '&'];
 
-  for (let beat = 0; beat < rhythm.beatsPerBar; beat += 1) {
-    const base = String(beat + 1);
+  for (let beat = 0; beat < loopBeats(rhythm); beat += 1) {
+    const base = String((beat % rhythm.beatsPerBar) + 1);
     const source =
       rhythm.subdivision === 4 ? sixteenthLabels : rhythm.subdivision === 3 ? tripletLabels : eighthLabels;
 

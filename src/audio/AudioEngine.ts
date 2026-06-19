@@ -1,5 +1,5 @@
 import type { Instrument, StrumPattern } from '../data/strumTypes';
-import { barDuration, secPerBeat } from '../lib/rhythm';
+import { loopBeats, loopDuration, secPerBeat } from '../lib/rhythm';
 import { schedulePattern, type ScheduledStroke } from './schedulePattern';
 import { playMetronomeClick, playStrum } from './strumVoices';
 
@@ -19,7 +19,7 @@ export class AudioEngine {
   private timeoutIds: number[] = [];
   private nextBarStartTime = 0;
   private nextNoteTime = 0;
-  private barIndex = 0;
+  private cycleIndex = 0;
   private events: ScheduledStroke[] = [];
   private loop = true;
   private metronome = true;
@@ -66,7 +66,7 @@ export class AudioEngine {
     this.currentBarStartTime = startAt;
     this.nextBarStartTime = startAt;
     this.nextNoteTime = startAt;
-    this.barIndex = 0;
+    this.cycleIndex = 0;
 
     if (options.countIn) {
       for (let beat = 0; beat < countInBeats; beat += 1) {
@@ -90,7 +90,7 @@ export class AudioEngine {
     this.timeoutIds = [];
     this.nextBarStartTime = 0;
     this.nextNoteTime = 0;
-    this.barIndex = 0;
+    this.cycleIndex = 0;
   }
 
   setBpm(bpm: number) {
@@ -117,17 +117,17 @@ export class AudioEngine {
     if (!context || !pattern || !rhythm) return;
 
     while (this.nextNoteTime < context.currentTime + this.scheduleAheadTime) {
-      if (!this.loop && this.barIndex >= rhythm.bars) {
+      if (!this.loop && this.cycleIndex >= 1) {
         return;
       }
 
-      this.scheduleBar(this.nextBarStartTime, this.barIndex);
-      const duration = barDuration(rhythm, this.bpm);
+      this.scheduleCycle(this.nextBarStartTime, this.cycleIndex);
+      const duration = loopDuration(rhythm, this.bpm);
       this.nextBarStartTime += duration;
       this.nextNoteTime = this.nextBarStartTime;
-      this.barIndex += 1;
+      this.cycleIndex += 1;
 
-      if (!this.loop && this.barIndex >= rhythm.bars) {
+      if (!this.loop && this.cycleIndex >= 1) {
         const stopId = window.setTimeout(
           () => this.stop(),
           Math.max(0, (this.nextBarStartTime - context.currentTime + 0.05) * 1000),
@@ -138,7 +138,7 @@ export class AudioEngine {
     }
   }
 
-  private scheduleBar(barStartTime: number, barIndex: number) {
+  private scheduleCycle(barStartTime: number, cycleIndex: number) {
     const context = this.contextValue;
     const pattern = this.pattern;
     const rhythm = pattern?.rhythm;
@@ -146,7 +146,7 @@ export class AudioEngine {
 
     const activate = () => {
       this.currentBarStartTime = barStartTime;
-      this.onBarStart?.(barIndex, barStartTime);
+      this.onBarStart?.(cycleIndex, barStartTime);
     };
 
     if (barStartTime <= context.currentTime + 0.01) {
@@ -161,8 +161,13 @@ export class AudioEngine {
     }
 
     if (this.metronome) {
-      for (let beat = 0; beat < rhythm.beatsPerBar; beat += 1) {
-        playMetronomeClick(context, barStartTime + beat * secPerBeat(this.bpm), beat === 0);
+      const totalBeats = loopBeats(rhythm);
+      for (let beat = 0; beat < totalBeats; beat += 1) {
+        playMetronomeClick(
+          context,
+          barStartTime + beat * secPerBeat(this.bpm),
+          beat % rhythm.beatsPerBar === 0,
+        );
       }
     }
   }
