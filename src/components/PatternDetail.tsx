@@ -4,6 +4,7 @@ import { categoryById } from '../data/strumCategories';
 import type { StrumPattern } from '../data/strumTypes';
 import { getNeighborPatterns } from '../data/patterns';
 import { IconButton } from './IconButton';
+import { KaraokeTrack } from './KaraokeTrack';
 import { PatternImageViewer } from './PatternImageViewer';
 import { PracticePanel } from './PracticePanel';
 
@@ -112,6 +113,15 @@ export function PatternDetail({
           </IconButton>
         </div>
       </div>
+
+      {pattern.rhythm ? (
+        <KaraokeTrack
+          pattern={pattern}
+          progress={transportState.progress}
+          activeStrokeIndex={transportState.activeStrokeIndex}
+          isPlaying={transportState.isPlaying}
+        />
+      ) : null}
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
         <PatternImageViewer
