@@ -11,7 +11,7 @@ type KaraokeTrackProps = {
 
 type NoteState = 'upcoming' | 'active' | 'played';
 
-// 노래방 3단계: 예정(회색) → 지금(노랑) → 지나감(초록)
+// 스트럼 3단계: 예정(회색) → 지금(노랑) → 지나감(초록)
 const chipClass: Record<NoteState, string> = {
   upcoming: 'border-slate-200 bg-white text-slate-400',
   active:
@@ -45,7 +45,7 @@ export function KaraokeTrack({ pattern, progress, activeStrokeIndex, isPlaying }
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-sm font-black text-slate-900">재생 트랙 · 노래방 모드</h3>
+        <h3 className="text-sm font-black text-slate-900">재생 트랙 · 스트럼 모드</h3>
         <div className="flex items-center gap-3 text-xs font-bold">
           <span className="inline-flex items-center gap-1 text-slate-400">
             <span className="h-2.5 w-2.5 rounded-full bg-slate-300" aria-hidden="true" />예정
