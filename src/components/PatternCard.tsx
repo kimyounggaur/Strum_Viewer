@@ -34,12 +34,19 @@ export function PatternCard({
         className="block w-full bg-white p-3 text-left"
         aria-label={`${pattern.title} 상세 보기`}
       >
-        <div className="flex h-36 items-center justify-center overflow-hidden rounded-lg border border-slate-100 bg-white">
+        <div
+          className="flex h-36 items-center justify-center overflow-hidden rounded-lg border border-slate-100 bg-white"
+          onContextMenu={(event) => event.preventDefault()}
+          onDragStart={(event) => event.preventDefault()}
+        >
           <img
             src={pattern.imageSrc}
             alt={`${pattern.title} 스트럼 패턴 악보`}
             loading="lazy"
+            draggable={false}
             className="max-h-full max-w-full object-contain"
+            onContextMenu={(event) => event.preventDefault()}
+            onDragStart={(event) => event.preventDefault()}
             onError={(event) => {
               event.currentTarget.src = '/strums/placeholders/pattern-placeholder.svg';
             }}

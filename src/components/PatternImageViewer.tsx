@@ -1,4 +1,4 @@
-import { Download, Expand, Maximize2, MoveHorizontal, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
+import { Expand, Maximize2, MoveHorizontal, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { StrumPattern } from '../data/strumTypes';
 import { IconButton } from './IconButton';
@@ -135,13 +135,6 @@ export function PatternImageViewer({
     void viewportRef.current?.requestFullscreen();
   }
 
-  function downloadImage() {
-    const link = document.createElement('a');
-    link.href = pattern.imageSrc;
-    link.download = `${pattern.id}.png`;
-    link.click();
-  }
-
   return (
     <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
       <div className="flex flex-col gap-3 border-b border-slate-200 p-3 lg:flex-row lg:items-center lg:justify-between">
@@ -184,9 +177,6 @@ export function PatternImageViewer({
           <IconButton label="전체화면" onClick={openFullscreen}>
             <Maximize2 className="h-4 w-4" aria-hidden="true" />
           </IconButton>
-          <IconButton label="이미지 다운로드" onClick={downloadImage}>
-            <Download className="h-4 w-4" aria-hidden="true" />
-          </IconButton>
         </div>
       </div>
 
@@ -205,6 +195,8 @@ export function PatternImageViewer({
         onPointerCancel={handlePointerUp}
         onWheel={handleWheel}
         onKeyDown={handleKeyDown}
+        onContextMenu={(event) => event.preventDefault()}
+        onDragStart={(event) => event.preventDefault()}
       >
         <div
           className="relative mx-auto bg-white shadow-sm"
@@ -218,6 +210,8 @@ export function PatternImageViewer({
             alt={`${pattern.title} 스트럼 패턴 악보`}
             draggable={false}
             className="h-full w-full select-none object-contain"
+            onContextMenu={(event) => event.preventDefault()}
+            onDragStart={(event) => event.preventDefault()}
             onError={(event) => {
               event.currentTarget.src = '/strums/placeholders/pattern-placeholder.svg';
             }}
