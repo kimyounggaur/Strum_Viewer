@@ -6,7 +6,6 @@
 
 ```bash
 npm install
-npm run prepare:strums
 npm run dev
 ```
 
@@ -16,18 +15,22 @@ npm run dev
 npm run build
 ```
 
-`predev`, `prebuild`에서 `npm run prepare:strums`가 자동 실행되므로 일반적으로는 `npm run dev` 또는 `npm run build`만 실행해도 됩니다.
+`predev`, `prebuild`에서 asset 준비 스크립트가 자동 실행되므로 일반적으로는 `npm run dev` 또는 `npm run build`만 실행해도 됩니다. `public/strums/`는 생성물이라 git에 올리지 않습니다(첫 실행 때 자동 생성).
 
 ## 폴더 구조
 
 ```txt
-public/strums/                 # 스크립트가 생성하는 ASCII asset
+스트럼 Source/                  # PNG 원본 (수정 금지)
+public/strums/                 # 생성물: 스크립트가 ASCII 파일명으로 복사 (git 제외)
 scripts/prepareStrumAssets.mjs # 스트럼 Source 스캔, 이미지 복사, manifest 생성
+scripts/buildRhythms.mjs       # rhythms.source.json → src/data/strumRhythms.ts 생성
+scripts/rhythms.source.json    # 리듬(스트로크) 전사 원본
 src/audio/                     # Web Audio 스트럼/메트로놈 엔진
 src/components/                # 앱 화면 컴포넌트
 src/data/                      # 타입, 카테고리, generated manifest, 리듬 데이터
 src/hooks/                     # 검색, 저장, 메트로놈, transport 훅
 src/lib/                       # 리듬 시간 계산, IndexedDB 확장 구조
+docs/spec/                     # 바이브코딩 명세 문서
 ```
 
 ## 이미지 추가법
@@ -45,7 +48,9 @@ src/lib/                       # 리듬 시간 계산, IndexedDB 확장 구조
 
 `id`, `categoryId`, `title`, `exerciseNo`, `displayNo`, `originalFileName`, `imageSrc`, `width`, `height`, `timeSignature`, `feel`, `difficulty`, `recommendedBpm`, `tags`
 
-리듬 재생 데이터는 generated 파일에 직접 쓰지 않고 `src/data/strumRhythms.ts`에 별도로 둡니다. 앱은 `src/data/patterns.ts`에서 manifest와 rhythm을 합친 배열만 사용합니다.
+## 리듬 데이터 규칙
+
+리듬 재생 데이터는 `scripts/rhythms.source.json`이 원본입니다. `node scripts/buildRhythms.mjs`가 이를 읽어 `src/data/strumRhythms.ts`를 생성하므로 **TS 파일을 직접 고치지 말고 JSON을 고친 뒤 스크립트를 다시 실행**합니다. 앱은 `src/data/patterns.ts`에서 manifest와 rhythm을 합친 배열만 사용합니다.
 
 ## 정적 배포 주의사항
 

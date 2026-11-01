@@ -19,3 +19,10 @@ node_modules/.tmp/
 
 .vercel
 .claude/
+
+# 작업 중 캡처·임시 이미지 (저장소 자산이 아님)
+K-*.png
+
+# 생성물: `npm run prepare:data`가 `스트럼 Source`에서 매번 재생성한다.
+# src/data/*.generated.ts 는 IDE 타입 완성을 위해 커밋을 유지한다.
+public/strums/
