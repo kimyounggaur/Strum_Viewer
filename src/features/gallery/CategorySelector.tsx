@@ -1,3 +1,4 @@
+import { strumPatterns } from '../../data/patterns';
 import { strumCategories } from '../../data/strumCategories';
 import type { StrumCategoryId } from '../../data/strumTypes';
 import { CategoryCard } from './CategoryCard';
@@ -15,7 +16,9 @@ export function CategorySelector({ selectedCategoryId, onSelect }: CategorySelec
           <h1 id="category-heading" className="text-2xl font-black text-ink sm:text-3xl">
             스트럼 카테고리
           </h1>
-          <p className="mt-1 text-sm text-slate-500">9개 유형, 76개 원본 PNG 패턴</p>
+          <p className="mt-1 text-sm text-slate-500">
+            {strumCategories.length}개 유형, {strumPatterns.length}개 원본 PNG 패턴
+          </p>
         </div>
       </div>
 

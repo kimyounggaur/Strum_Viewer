@@ -6,14 +6,7 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-  globalIgnores([
-    'dist',
-    'public',
-    'node_modules',
-    'coverage',
-    'src/data/*.generated.ts',
-    'src/data/strumRhythms.ts',
-  ]),
+  globalIgnores(['dist', 'public', 'node_modules', 'coverage', 'src/data/*.generated.ts']),
 
   // 앱 소스: 타입 정보 기반 규칙
   {

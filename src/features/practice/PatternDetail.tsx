@@ -1,5 +1,6 @@
-import { ArrowLeft, ArrowRight, ChevronLeft, Heart } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, ArrowRight, ChevronLeft, Heart, Info } from 'lucide-react';
 import { useCallback, useEffect } from 'react';
+import { countingFeelLabel, difficultyLabel } from '../../data/labels';
 import { categoryById } from '../../data/strumCategories';
 import type { StrumPattern } from '../../data/strumTypes';
 import { getNeighborPatterns } from '../../data/patterns';
@@ -25,6 +26,7 @@ export function PatternDetail({
   onOpenPattern,
 }: PatternDetailProps) {
   const category = categoryById[pattern.categoryId];
+  const approx = pattern.rhythm?.confidence === 'approx';
   const neighbors = getNeighborPatterns(pattern);
   // 패턴이 바뀌면 useTransport가 이전 재생을 멈추고 새 패턴을 엔진에 올린다.
   // (재마운트하지 않으므로 뷰어의 전체화면·확대 상태가 유지된다)
@@ -90,21 +92,30 @@ export function PatternDetail({
               >
                 {category.shortLabel}
               </span>
-              <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
-                {pattern.timeSignature}
-              </span>
-              {pattern.rhythm ? (
-                <span className="rounded-lg bg-teal-50 px-2.5 py-1 text-xs font-bold text-teal-700">
-                  오디오 재생
-                </span>
-              ) : (
+              {category.shortLabel !== pattern.timeSignature ? (
                 <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
-                  메트로놈
+                  {pattern.timeSignature}
                 </span>
-              )}
+              ) : null}
+              <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
+                {countingFeelLabel[pattern.countingFeel]}
+              </span>
+              {!pattern.rhythm ? (
+                <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
+                  메트로놈만
+                </span>
+              ) : approx ? (
+                <span
+                  className="inline-flex items-center gap-1 rounded-lg bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-800"
+                  title="이 패턴의 재생 데이터는 검수 전 근사치라 악보와 다를 수 있습니다."
+                >
+                  <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" />
+                  재생 데이터 근사치
+                </span>
+              ) : null}
             </div>
-            <h1 className="mt-2 text-2xl font-black text-slate-950">{pattern.title}</h1>
-            <p className="mt-1 break-all text-sm text-slate-500">{pattern.originalFileName}</p>
+            <h1 className="mt-2 text-2xl font-black text-slate-950">{pattern.titleKo}</h1>
+            <p className="mt-1 text-sm text-slate-500">{pattern.title}</p>
           </div>
         </div>
 
@@ -128,6 +139,13 @@ export function PatternDetail({
         </div>
       </div>
 
+      {pattern.notes ? (
+        <p className="flex items-start gap-2 rounded-lg border border-sky-200 bg-sky-50 px-4 py-3 text-sm leading-6 text-sky-900">
+          <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          {pattern.notes}
+        </p>
+      ) : null}
+
       {pattern.rhythm ? <KaraokeTrack pattern={pattern} /> : null}
 
       <div className="grid grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
@@ -146,10 +164,24 @@ export function PatternDetail({
               <dt className="text-slate-500">추천 BPM</dt>
               <dd className="font-bold text-slate-800">{pattern.recommendedBpm.default}</dd>
               <dt className="text-slate-500">난이도</dt>
-              <dd className="font-bold text-slate-800">{pattern.difficulty}</dd>
-              <dt className="text-slate-500">크기</dt>
               <dd className="font-bold text-slate-800">
-                {pattern.width} x {pattern.height}
+                {difficultyLabel[pattern.difficulty]}
+                {pattern.difficultySource === 'auto' ? (
+                  <span
+                    className="ml-1 text-xs font-semibold text-slate-500"
+                    title="리듬 복잡도(싱코페이션·업스트로크·밀도)로 자동 추정한 값입니다."
+                  >
+                    (자동 추정)
+                  </span>
+                ) : null}
+              </dd>
+              <dt className="text-slate-500">세는 느낌</dt>
+              <dd className="font-bold text-slate-800">
+                {countingFeelLabel[pattern.countingFeel]}
+              </dd>
+              <dt className="text-slate-500">원본 파일</dt>
+              <dd className="break-all text-xs font-semibold text-slate-600">
+                {pattern.originalFileName}
               </dd>
             </dl>
           </div>

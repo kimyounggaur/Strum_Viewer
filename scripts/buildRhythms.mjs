@@ -1,118 +1,139 @@
+/**
+ * scripts/rhythms.source.json → src/data/strumRhythms.generated.ts
+ *
+ * 카테고리별 고정 박자 정보(박자표·beatsPerBar·pulseNote)는 src/data/categories.json의
+ * timeSignature·grid에서 읽는다(카테고리 정의는 한 곳에만 둔다).
+ * step 범위를 벗어난 스트로크는 조용히 버리지 않고 오류로 멈춘다.
+ */
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { normalizeConfidence } from './lib/rhythmMeta.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
 const sourcePath = path.join(__dirname, 'rhythms.source.json');
-const dataTarget = path.join(projectRoot, 'src', 'data', 'strumRhythms.ts');
+const categoriesPath = path.join(projectRoot, 'src', 'data', 'categories.json');
+const dataTarget = path.join(projectRoot, 'src', 'data', 'strumRhythms.generated.ts');
 
-// Per-category fixed musical fields. Order also defines emit order.
-const CATEGORY_FIXED = {
-  'sixteen-beat-variation': { timeSignature: [4, 4], pulseNote: 'quarter', beatsPerBar: 4 },
-  'three-four': { timeSignature: [3, 4], pulseNote: 'quarter', beatsPerBar: 3 },
-  'twelve-eight': { timeSignature: [12, 8], pulseNote: 'dotted-quarter', beatsPerBar: 4 },
-  'six-eight': { timeSignature: [6, 8], pulseNote: 'dotted-quarter', beatsPerBar: 2 },
-  shuffle: { timeSignature: [4, 4], pulseNote: 'quarter', beatsPerBar: 4 },
-  'slow-gogo': { timeSignature: [4, 4], pulseNote: 'quarter', beatsPerBar: 4 },
-  'slow-rock': { timeSignature: [4, 4], pulseNote: 'quarter', beatsPerBar: 4 },
-  calypso: { timeSignature: [4, 4], pulseNote: 'quarter', beatsPerBar: 4 },
-  country: { timeSignature: [4, 4], pulseNote: 'quarter', beatsPerBar: 4 },
-};
-const CATEGORY_ORDER = Object.keys(CATEGORY_FIXED);
+const FEEL_TIMINGS = new Set(['straight', 'swing', 'triplet', 'compound']);
+const DIRS = new Set(['down', 'up', 'rest', 'mute']);
 
-function categoryIdOf(id) {
-  const m = /^(.*)_ex\d+$/.exec(id);
-  if (!m) throw new Error(`Bad rhythm id "${id}" (expected "<category>_exNN")`);
-  return m[1];
-}
-
-function exNoOf(id) {
-  const m = /_ex(\d+)$/.exec(id);
-  return m ? Number(m[1]) : 0;
+function parseId(id) {
+  const match = /^(.*)_ex(\d+)$/.exec(id);
+  if (!match) throw new Error(`잘못된 리듬 id "${id}" (형식: "<category>_exNN")`);
+  return { categoryId: match[1], exNo: Number(match[2]) };
 }
 
 async function main() {
   const raw = JSON.parse(await readFile(sourcePath, 'utf8'));
+  const categories = JSON.parse(await readFile(categoriesPath, 'utf8'));
+  const categoryOrder = categories.map((category) => category.id);
+  const categoryById = new Map(categories.map((category) => [category.id, category]));
+  const errors = [];
   const warnings = [];
+  const seenIds = new Set();
 
   const entries = raw.map((src) => {
-    const categoryId = categoryIdOf(src.id);
-    const fixed = CATEGORY_FIXED[categoryId];
-    if (!fixed) throw new Error(`Unknown category "${categoryId}" for ${src.id}`);
+    const { categoryId, exNo } = parseId(src.id);
+    const category = categoryById.get(categoryId);
+    if (!category) throw new Error(`${src.id}: categories.json에 없는 카테고리 "${categoryId}"`);
+    if (seenIds.has(src.id)) errors.push(`${src.id}: id 중복`);
+    seenIds.add(src.id);
+    if (!FEEL_TIMINGS.has(src.feelTiming)) errors.push(`${src.id}: feelTiming "${src.feelTiming}"`);
 
+    const [numerator, denominator] = category.timeSignature.split('/').map(Number);
     const bars = Math.max(1, Math.round(src.bars ?? 1));
-    const subdivision = src.subdivision;
-    const cells = fixed.beatsPerBar * bars * subdivision; // valid steps: 0..cells-1
+    const cells = category.grid.beatsPerBar * bars * src.subdivision;
 
-    const strokes = (src.strokes ?? [])
-      .filter((stroke) => {
-        if (stroke.step < 0 || stroke.step >= cells) {
-          warnings.push(
-            `${src.id}: dropped stroke step=${stroke.step} (out of range 0..${cells - 1}, subdiv=${subdivision}, bars=${bars})`,
-          );
-          return false;
-        }
-        return true;
-      })
-      .sort((a, b) => a.step - b.step);
+    const strokes = [...(src.strokes ?? [])].sort((a, b) => a.step - b.step);
+    for (const stroke of strokes) {
+      if (!Number.isInteger(stroke.step) || stroke.step < 0 || stroke.step >= cells) {
+        errors.push(
+          `${src.id}: step=${stroke.step} 범위 밖 (0..${cells - 1}, subdivision=${src.subdivision}, bars=${bars})`,
+        );
+      }
+      if (!DIRS.has(stroke.dir)) errors.push(`${src.id}: dir "${stroke.dir}"`);
+    }
+    for (let i = 1; i < strokes.length; i += 1) {
+      if (strokes[i].step === strokes[i - 1].step)
+        errors.push(`${src.id}: step ${strokes[i].step} 중복`);
+    }
+    if (strokes.length === 0) warnings.push(`${src.id}: 스트로크가 없습니다`);
 
-    if (strokes.length === 0) warnings.push(`${src.id}: no valid strokes`);
-    if ((src.confidence ?? '').includes('low')) warnings.push(`${src.id}: low-confidence draft`);
+    const { confidence, source } = normalizeConfidence(src.confidence);
+    if (confidence !== 'verified') warnings.push(`${src.id}: 검수 전 근사치(${src.confidence})`);
 
-    const rhythm = {
-      timeSignature: fixed.timeSignature,
-      pulseNote: fixed.pulseNote,
-      beatsPerBar: fixed.beatsPerBar,
-      subdivision,
-      bars,
-      feelTiming: src.feelTiming,
-      ...(src.swing != null ? { swing: src.swing } : {}),
-      strokes,
-      imageLeftPad: src.imageLeftPad,
-      imageRightPad: src.imageRightPad,
+    return {
+      id: src.id,
+      categoryId,
+      exNo,
+      rhythm: {
+        timeSignature: [numerator, denominator],
+        pulseNote: category.grid.pulseNote,
+        beatsPerBar: category.grid.beatsPerBar,
+        subdivision: src.subdivision,
+        bars,
+        feelTiming: src.feelTiming,
+        swing: src.swing,
+        imageLeftPad: src.imageLeftPad,
+        imageRightPad: src.imageRightPad,
+        confidence,
+        source,
+        note: src.note,
+        strokes,
+      },
     };
-
-    return { id: src.id, categoryId, exNo: exNoOf(src.id), rhythm };
   });
+
+  if (errors.length) {
+    for (const error of errors) console.error(`✖ ${error}`);
+    throw new Error(`rhythms.source.json: ${errors.length}개 오류로 중단했습니다.`);
+  }
 
   entries.sort(
     (a, b) =>
-      CATEGORY_ORDER.indexOf(a.categoryId) - CATEGORY_ORDER.indexOf(b.categoryId) ||
-      a.exNo - b.exNo,
+      categoryOrder.indexOf(a.categoryId) - categoryOrder.indexOf(b.categoryId) || a.exNo - b.exNo,
   );
 
-  const stringifyStroke = (s) => {
-    const parts = [`step: ${s.step}`, `dir: '${s.dir}'`];
-    if (s.accent) parts.push('accent: true');
-    if (s.tie) parts.push('tie: true');
-    if (s.durationSteps != null) parts.push(`durationSteps: ${s.durationSteps}`);
+  const stringifyStroke = (stroke) => {
+    const parts = [`step: ${stroke.step}`, `dir: '${stroke.dir}'`];
+    if (stroke.accent) parts.push('accent: true');
+    if (stroke.tie) parts.push('tie: true');
+    if (stroke.durationSteps != null) parts.push(`durationSteps: ${stroke.durationSteps}`);
+    if (stroke.xNorm != null) parts.push(`xNorm: ${stroke.xNorm}`);
     return `{ ${parts.join(', ')} }`;
   };
 
-  const stringifyRhythm = (r) => {
-    const lines = [];
-    lines.push(`    timeSignature: [${r.timeSignature[0]}, ${r.timeSignature[1]}],`);
-    lines.push(`    pulseNote: '${r.pulseNote}',`);
-    lines.push(`    beatsPerBar: ${r.beatsPerBar},`);
-    lines.push(`    subdivision: ${r.subdivision},`);
-    lines.push(`    bars: ${r.bars},`);
-    lines.push(`    feelTiming: '${r.feelTiming}',`);
-    if (r.swing != null) lines.push(`    swing: ${r.swing},`);
-    lines.push(`    imageLeftPad: ${r.imageLeftPad},`);
-    lines.push(`    imageRightPad: ${r.imageRightPad},`);
-    lines.push(`    strokes: [`);
-    for (const s of r.strokes) lines.push(`      ${stringifyStroke(s)},`);
-    lines.push(`    ],`);
+  const stringifyRhythm = (rhythm) => {
+    const lines = [
+      `    timeSignature: [${rhythm.timeSignature[0]}, ${rhythm.timeSignature[1]}],`,
+      `    pulseNote: '${rhythm.pulseNote}',`,
+      `    beatsPerBar: ${rhythm.beatsPerBar},`,
+      `    subdivision: ${rhythm.subdivision},`,
+      `    bars: ${rhythm.bars},`,
+      `    feelTiming: '${rhythm.feelTiming}',`,
+    ];
+    if (rhythm.swing != null) lines.push(`    swing: ${rhythm.swing},`);
+    lines.push(`    imageLeftPad: ${rhythm.imageLeftPad},`);
+    lines.push(`    imageRightPad: ${rhythm.imageRightPad},`);
+    lines.push(`    confidence: '${rhythm.confidence}',`);
+    lines.push(`    source: '${rhythm.source}',`);
+    if (rhythm.note) lines.push(`    note: ${JSON.stringify(rhythm.note)},`);
+    lines.push('    strokes: [');
+    for (const stroke of rhythm.strokes) lines.push(`      ${stringifyStroke(stroke)},`);
+    lines.push('    ],');
     return lines.join('\n');
   };
 
-  const body = entries.map((e) => `  '${e.id}': {\n${stringifyRhythm(e.rhythm)}\n  },`).join('\n');
+  const body = entries
+    .map((entry) => `  '${entry.id}': {\n${stringifyRhythm(entry.rhythm)}\n  },`)
+    .join('\n');
 
-  const out = `import type { StrumRhythm } from './strumTypes';
+  const out = `// AUTO-GENERATED by scripts/buildRhythms.mjs from scripts/rhythms.source.json.
+// 직접 고치지 말고 JSON을 고친 뒤 \`npm run prepare:rhythms\`를 실행하세요.
+import type { StrumRhythm } from './strumTypes';
 
-// AUTO-GENERATED by scripts/buildRhythms.mjs from scripts/rhythms.source.json.
-// Do not edit by hand; edit the JSON source and re-run \`node scripts/buildRhythms.mjs\`.
 export const strumRhythms: Record<string, StrumRhythm> = {
 ${body}
 };
@@ -121,11 +142,11 @@ ${body}
   await writeFile(dataTarget, out, 'utf8');
 
   const counts = {};
-  for (const e of entries) counts[e.categoryId] = (counts[e.categoryId] ?? 0) + 1;
+  for (const entry of entries) counts[entry.categoryId] = (counts[entry.categoryId] ?? 0) + 1;
   console.log(`Generated ${entries.length} rhythms ->`, counts);
   if (warnings.length) {
-    console.log(`\n${warnings.length} warning(s):`);
-    for (const w of warnings) console.log(`  - ${w}`);
+    console.warn(`\n${warnings.length}개 경고:`);
+    for (const warning of warnings) console.warn(`  ⚠ ${warning}`);
   }
 }
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { strumPatterns } from './patterns';
-import { strumRhythms } from './strumRhythms';
+import { strumRhythms } from './strumRhythms.generated';
 import type { StrumRhythm } from './strumTypes';
 
 /**
@@ -74,5 +74,45 @@ describe('리듬 데이터 스키마', () => {
     const pattern = strumPatterns.find((candidate) => candidate.id === id);
     expect(pattern, `${id} 패턴 존재`).toBeDefined();
     expect(`${rhythm.timeSignature[0]}/${rhythm.timeSignature[1]}`).toBe(pattern!.timeSignature);
+  });
+});
+
+describe('Phase 3 메타데이터', () => {
+  it('모든 리듬에 confidence가 있고, 근사치는 slow-gogo_ex03 하나뿐', () => {
+    const approx = entries.filter(([, rhythm]) => rhythm.confidence === 'approx').map(([id]) => id);
+    expect(entries.every(([, rhythm]) => rhythm.confidence !== undefined)).toBe(true);
+    expect(approx).toEqual(['slow-gogo_ex03']);
+  });
+
+  it('매니페스트: 한글 제목·썸네일·세는 느낌·난이도 출처', () => {
+    for (const pattern of strumPatterns) {
+      expect(pattern.titleKo).toMatch(/ Ex\d{2}$/);
+      expect(pattern.thumbSrc).toMatch(/^\/strums\/.+\.(webp|png)$/);
+      expect(['straight-8', 'straight-16', 'swing', 'triplet', 'compound']).toContain(
+        pattern.countingFeel,
+      );
+      expect(['manual', 'auto']).toContain(pattern.difficultySource);
+    }
+  });
+
+  it('세는 느낌은 리듬과 일치 (3/4 Ex10~13은 셋잇단)', () => {
+    const feel = (id: string) => strumPatterns.find((pattern) => pattern.id === id)!.countingFeel;
+    expect(feel('three-four_ex01')).toBe('straight-8');
+    expect(feel('three-four_ex10')).toBe('triplet');
+    expect(feel('shuffle_ex01')).toBe('swing');
+    expect(feel('six-eight_ex01')).toBe('compound');
+  });
+
+  it('난이도는 더 이상 Ex 번호로 결정되지 않는다', () => {
+    const byExercise = strumPatterns.filter(
+      (pattern) =>
+        pattern.difficulty !==
+        (pattern.exerciseNo <= 3
+          ? 'beginner'
+          : pattern.exerciseNo <= 8
+            ? 'intermediate'
+            : 'advanced'),
+    );
+    expect(byExercise.length).toBeGreaterThan(20);
   });
 });

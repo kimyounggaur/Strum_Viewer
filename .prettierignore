@@ -3,7 +3,6 @@ dist
 coverage
 public/strums
 src/data/*.generated.ts
-src/data/strumRhythms.ts
 package-lock.json
 docs
 스트럼 Source

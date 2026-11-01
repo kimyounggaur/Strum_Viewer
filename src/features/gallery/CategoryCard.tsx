@@ -1,3 +1,5 @@
+import { countingFeelLabel } from '../../data/labels';
+import { patternCountByCategory } from '../../data/patterns';
 import type { StrumCategory } from '../../data/strumTypes';
 
 type CategoryCardProps = {
@@ -34,7 +36,7 @@ export function CategoryCard({ category, active, onSelect }: CategoryCardProps) 
           className="rounded-lg px-3 py-1 text-sm font-black text-white shadow-sm"
           style={{ backgroundColor: category.color }}
         >
-          {category.patternCount}
+          {patternCountByCategory[category.id] ?? 0}
         </span>
       </div>
 
@@ -51,7 +53,7 @@ export function CategoryCard({ category, active, onSelect }: CategoryCardProps) 
           className="rounded-lg px-2.5 py-1 text-xs font-bold text-white"
           style={{ backgroundColor: category.accentColor }}
         >
-          {category.feel}
+          {countingFeelLabel[category.countingFeel]}
         </span>
       </div>
     </button>

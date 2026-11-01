@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { countingFeelLabel, difficultyRank } from '../data/labels';
 import { categoryById } from '../data/strumCategories';
 import type { SortMode, StrumCategoryId, StrumPattern } from '../data/strumTypes';
 
@@ -9,12 +10,6 @@ type FilterArgs = {
   sortMode: SortMode;
   favorites: Set<string>;
   recentPatterns: string[];
-};
-
-const difficultyRank: Record<StrumPattern['difficulty'], number> = {
-  beginner: 0,
-  intermediate: 1,
-  advanced: 2,
 };
 
 export function useFilteredPatterns({
@@ -41,9 +36,10 @@ export function useFilteredPatterns({
       const category = categoryById[pattern.categoryId];
       const searchable = [
         pattern.title,
+        pattern.titleKo,
         pattern.displayNo,
         pattern.timeSignature,
-        pattern.feel,
+        countingFeelLabel[pattern.countingFeel],
         pattern.originalFileName,
         category.labelKo,
         category.labelEn,

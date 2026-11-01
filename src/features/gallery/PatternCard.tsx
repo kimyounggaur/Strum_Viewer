@@ -1,5 +1,6 @@
 import { Heart, Play, Square, Star } from 'lucide-react';
 import { useState } from 'react';
+import { countingFeelLabel, difficultyLabel } from '../../data/labels';
 import { categoryById } from '../../data/strumCategories';
 import type { StrumPattern } from '../../data/strumTypes';
 import { IconButton } from '../../components/ui/IconButton';
@@ -11,12 +12,6 @@ type PatternCardProps = {
   onOpen: (patternId: string) => void;
   onPreview?: (pattern: StrumPattern) => void;
   isPreviewing?: boolean;
-};
-
-const difficultyLabel: Record<StrumPattern['difficulty'], string> = {
-  beginner: '기초',
-  intermediate: '중급',
-  advanced: '응용',
 };
 
 export function PatternCard({
@@ -50,8 +45,8 @@ export function PatternCard({
           ].join(' ')}
         >
           <img
-            src={pattern.imageSrc}
-            alt={`${pattern.title} 스트럼 패턴 악보`}
+            src={pattern.thumbSrc}
+            alt={`${pattern.titleKo} 스트럼 패턴 악보`}
             width={pattern.width}
             height={pattern.height}
             loading="lazy"
@@ -125,6 +120,9 @@ export function PatternCard({
           </span>
           <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700">
             {pattern.recommendedBpm.default} BPM
+          </span>
+          <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700">
+            {countingFeelLabel[pattern.countingFeel]}
           </span>
           <span className="inline-flex items-center gap-1 rounded-lg bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700">
             <Star className="h-3.5 w-3.5" aria-hidden="true" />
