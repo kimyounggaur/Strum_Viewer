@@ -1,0 +1,5020 @@
+[
+  {
+    "id": "sixteen-beat-variation_ex01",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 2,
+        "step": 7,
+        "dir": "up",
+        "t": 1.280487805
+      },
+      {
+        "index": 3,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 4,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 5,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 6,
+        "step": 14,
+        "dir": "down",
+        "t": 2.56097561
+      },
+      {
+        "index": 7,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex02",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 2,
+        "step": 7,
+        "dir": "up",
+        "t": 1.280487805
+      },
+      {
+        "index": 3,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 4,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 5,
+        "step": 11,
+        "dir": "up",
+        "t": 2.012195122
+      },
+      {
+        "index": 6,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 7,
+        "step": 14,
+        "dir": "down",
+        "t": 2.56097561
+      },
+      {
+        "index": 8,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex03",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.365853659
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 4,
+        "step": 7,
+        "dir": "up",
+        "t": 1.280487805
+      },
+      {
+        "index": 5,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 7,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 8,
+        "step": 14,
+        "dir": "down",
+        "t": 2.56097561
+      },
+      {
+        "index": 9,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex04",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.365853659
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 4,
+        "step": 7,
+        "dir": "up",
+        "t": 1.280487805
+      },
+      {
+        "index": 5,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 7,
+        "step": 11,
+        "dir": "up",
+        "t": 2.012195122
+      },
+      {
+        "index": 8,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 9,
+        "step": 14,
+        "dir": "down",
+        "t": 2.56097561
+      },
+      {
+        "index": 10,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex05",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.365853659
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 4,
+        "step": 7,
+        "dir": "up",
+        "t": 1.280487805
+      },
+      {
+        "index": 5,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 7,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 8,
+        "step": 13,
+        "dir": "up",
+        "t": 2.37804878
+      },
+      {
+        "index": 9,
+        "step": 14,
+        "dir": "down",
+        "t": 2.56097561
+      },
+      {
+        "index": 10,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex06",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.365853659
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 4,
+        "step": 7,
+        "dir": "up",
+        "t": 1.280487805
+      },
+      {
+        "index": 5,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 7,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 8,
+        "step": 13,
+        "dir": "up",
+        "t": 2.37804878
+      },
+      {
+        "index": 9,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex07",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 3,
+        "dir": "up",
+        "t": 0.548780488
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 3,
+        "step": 5,
+        "dir": "up",
+        "t": 0.914634146
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 5,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 7,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 8,
+        "step": 14,
+        "dir": "down",
+        "t": 2.56097561
+      },
+      {
+        "index": 9,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex08",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 3,
+        "dir": "up",
+        "t": 0.548780488
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 3,
+        "step": 5,
+        "dir": "up",
+        "t": 0.914634146
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 5,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 7,
+        "step": 11,
+        "dir": "up",
+        "t": 2.012195122
+      },
+      {
+        "index": 8,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 9,
+        "step": 14,
+        "dir": "down",
+        "t": 2.56097561
+      },
+      {
+        "index": 10,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex09",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.365853659
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 0.548780488
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 4,
+        "step": 5,
+        "dir": "up",
+        "t": 0.914634146
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 6,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 7,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 8,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 9,
+        "step": 14,
+        "dir": "up",
+        "t": 2.56097561
+      },
+      {
+        "index": 10,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex10",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.365853659
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 0.548780488
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 0.731707317
+      },
+      {
+        "index": 4,
+        "step": 5,
+        "dir": "up",
+        "t": 0.914634146
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 6,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 7,
+        "step": 10,
+        "dir": "down",
+        "t": 1.829268293
+      },
+      {
+        "index": 8,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 9,
+        "step": 13,
+        "dir": "up",
+        "t": 2.37804878
+      },
+      {
+        "index": 10,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex11",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 3,
+        "dir": "up",
+        "t": 0.548780488
+      },
+      {
+        "index": 2,
+        "step": 5,
+        "dir": "up",
+        "t": 0.914634146
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 4,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 5,
+        "step": 11,
+        "dir": "up",
+        "t": 2.012195122
+      },
+      {
+        "index": 6,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 7,
+        "step": 14,
+        "dir": "down",
+        "t": 2.56097561
+      },
+      {
+        "index": 8,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "sixteen-beat-variation_ex12",
+    "bpm": 82,
+    "loopBeats": 4,
+    "loopDuration": 2.926829268,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 3,
+        "dir": "up",
+        "t": 0.548780488
+      },
+      {
+        "index": 2,
+        "step": 6,
+        "dir": "down",
+        "t": 1.097560976
+      },
+      {
+        "index": 3,
+        "step": 9,
+        "dir": "up",
+        "t": 1.646341463
+      },
+      {
+        "index": 4,
+        "step": 12,
+        "dir": "down",
+        "t": 2.195121951
+      },
+      {
+        "index": 5,
+        "step": 14,
+        "dir": "up",
+        "t": 2.56097561
+      },
+      {
+        "index": 6,
+        "step": 15,
+        "dir": "up",
+        "t": 2.743902439
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex01",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "up",
+        "t": 0.666666667
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "up",
+        "t": 1.333333333
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 4,
+        "step": 8,
+        "dir": "up",
+        "t": 2.666666667
+      },
+      {
+        "index": 5,
+        "step": 10,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex02",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "up",
+        "t": 0.666666667
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "up",
+        "t": 1.333333333
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 4,
+        "step": 8,
+        "dir": "up",
+        "t": 2.666666667
+      },
+      {
+        "index": 5,
+        "step": 10,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex03",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.333333333
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 5,
+        "step": 7,
+        "dir": "up",
+        "t": 2.333333333
+      },
+      {
+        "index": 6,
+        "step": 8,
+        "dir": "down",
+        "t": 2.666666667
+      },
+      {
+        "index": 7,
+        "step": 10,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex04",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 1
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 2.666666667
+      },
+      {
+        "index": 6,
+        "step": 9,
+        "dir": "up",
+        "t": 3
+      },
+      {
+        "index": 7,
+        "step": 10,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex05",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 3,
+        "step": 5,
+        "dir": "up",
+        "t": 1.666666667
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 2.666666667
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 3.333333333
+      },
+      {
+        "index": 7,
+        "step": 11,
+        "dir": "up",
+        "t": 3.666666667
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex06",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.333333333
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "up",
+        "t": 1
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.666666667
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.333333333
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.666666667
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "up",
+        "t": 3
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.333333333
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "up",
+        "t": 3.666666667
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex07",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.333333333
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "up",
+        "t": 1
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 6,
+        "step": 7,
+        "dir": "up",
+        "t": 2.333333333
+      },
+      {
+        "index": 7,
+        "step": 8,
+        "dir": "down",
+        "t": 2.666666667
+      },
+      {
+        "index": 8,
+        "step": 9,
+        "dir": "up",
+        "t": 3
+      },
+      {
+        "index": 9,
+        "step": 10,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex08",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 1
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 4,
+        "step": 5,
+        "dir": "up",
+        "t": 1.666666667
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 6,
+        "step": 8,
+        "dir": "down",
+        "t": 2.666666667
+      },
+      {
+        "index": 7,
+        "step": 9,
+        "dir": "up",
+        "t": 3
+      },
+      {
+        "index": 8,
+        "step": 10,
+        "dir": "down",
+        "t": 3.333333333
+      },
+      {
+        "index": 9,
+        "step": 11,
+        "dir": "up",
+        "t": 3.666666667
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex09",
+    "bpm": 90,
+    "loopBeats": 6,
+    "loopDuration": 4,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.333333333
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 4,
+        "step": 5,
+        "dir": "up",
+        "t": 1.666666667
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 2
+      },
+      {
+        "index": 6,
+        "step": 7,
+        "dir": "up",
+        "t": 2.333333333
+      },
+      {
+        "index": 7,
+        "step": 8,
+        "dir": "down",
+        "t": 2.666666667
+      },
+      {
+        "index": 8,
+        "step": 10,
+        "dir": "down",
+        "t": 3.333333333
+      },
+      {
+        "index": 9,
+        "step": 11,
+        "dir": "up",
+        "t": 3.666666667
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex10",
+    "bpm": 90,
+    "loopBeats": 3,
+    "loopDuration": 2,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.222222222
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.444444444
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 0.888888889
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.111111111
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 1.555555556
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 1.777777778
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex11",
+    "bpm": 90,
+    "loopBeats": 3,
+    "loopDuration": 2,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.222222222
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.444444444
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 0.888888889
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.111111111
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 1.555555556
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 1.777777778
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex12",
+    "bpm": 90,
+    "loopBeats": 3,
+    "loopDuration": 2,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.222222222
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.444444444
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 0.888888889
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.111111111
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 1.555555556
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 1.777777778
+      }
+    ]
+  },
+  {
+    "id": "three-four_ex13",
+    "bpm": 90,
+    "loopBeats": 3,
+    "loopDuration": 2,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.222222222
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.444444444
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.666666667
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 0.888888889
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.111111111
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.333333333
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 1.555555556
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 1.777777778
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex01",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex02",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "up",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "up",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex03",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "up",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "up",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex04",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex05",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex06",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex07",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex08",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex09",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "up",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "up",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex10",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex11",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex12",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 2,
+        "step": 5,
+        "dir": "up",
+        "t": 1.515151515
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 4,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 5,
+        "step": 11,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex13",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "up",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "up",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex14",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex15",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.303030303
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.606060606
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.212121212
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.515151515
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.121212121
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.424242424
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.03030303
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "twelve-eight_ex16",
+    "bpm": 66,
+    "loopBeats": 4,
+    "loopDuration": 3.636363636,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 3,
+        "dir": "down",
+        "t": 0.909090909
+      },
+      {
+        "index": 2,
+        "step": 5,
+        "dir": "up",
+        "t": 1.515151515
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.818181818
+      },
+      {
+        "index": 4,
+        "step": 9,
+        "dir": "down",
+        "t": 2.727272727
+      },
+      {
+        "index": 5,
+        "step": 11,
+        "dir": "up",
+        "t": 3.333333333
+      }
+    ]
+  },
+  {
+    "id": "six-eight_ex01",
+    "bpm": 76,
+    "loopBeats": 2,
+    "loopDuration": 1.578947368,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.263157895
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.526315789
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 0.789473684
+      },
+      {
+        "index": 4,
+        "step": 8,
+        "dir": "down",
+        "t": 1.052631579
+      },
+      {
+        "index": 5,
+        "step": 10,
+        "dir": "down",
+        "t": 1.315789474
+      }
+    ]
+  },
+  {
+    "id": "six-eight_ex02",
+    "bpm": 76,
+    "loopBeats": 2,
+    "loopDuration": 1.578947368,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.131578947
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.263157895
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 0.526315789
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 0.789473684
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 1.052631579
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.315789474
+      }
+    ]
+  },
+  {
+    "id": "six-eight_ex03",
+    "bpm": 76,
+    "loopBeats": 2,
+    "loopDuration": 1.578947368,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.263157895
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 0.394736842
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 0.526315789
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 0.789473684
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 1.052631579
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.315789474
+      }
+    ]
+  },
+  {
+    "id": "six-eight_ex04",
+    "bpm": 76,
+    "loopBeats": 2,
+    "loopDuration": 1.578947368,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.263157895
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.526315789
+      },
+      {
+        "index": 3,
+        "step": 5,
+        "dir": "up",
+        "t": 0.657894737
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 0.789473684
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 1.052631579
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.315789474
+      }
+    ]
+  },
+  {
+    "id": "six-eight_ex05",
+    "bpm": 76,
+    "loopBeats": 2,
+    "loopDuration": 1.578947368,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.263157895
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.526315789
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 0.789473684
+      },
+      {
+        "index": 4,
+        "step": 7,
+        "dir": "up",
+        "t": 0.921052632
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 1.052631579
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.315789474
+      }
+    ]
+  },
+  {
+    "id": "six-eight_ex06",
+    "bpm": 76,
+    "loopBeats": 2,
+    "loopDuration": 1.578947368,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.263157895
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.526315789
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 0.789473684
+      },
+      {
+        "index": 4,
+        "step": 8,
+        "dir": "down",
+        "t": 1.052631579
+      },
+      {
+        "index": 5,
+        "step": 9,
+        "dir": "up",
+        "t": 1.184210526
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.315789474
+      }
+    ]
+  },
+  {
+    "id": "six-eight_ex07",
+    "bpm": 76,
+    "loopBeats": 2,
+    "loopDuration": 1.578947368,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.263157895
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.526315789
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 0.789473684
+      },
+      {
+        "index": 4,
+        "step": 8,
+        "dir": "down",
+        "t": 1.052631579
+      },
+      {
+        "index": 5,
+        "step": 10,
+        "dir": "down",
+        "t": 1.315789474
+      },
+      {
+        "index": 6,
+        "step": 11,
+        "dir": "up",
+        "t": 1.447368421
+      }
+    ]
+  },
+  {
+    "id": "six-eight_ex08",
+    "bpm": 76,
+    "loopBeats": 2,
+    "loopDuration": 1.578947368,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.131578947
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.263157895
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 0.526315789
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 0.789473684
+      },
+      {
+        "index": 5,
+        "step": 7,
+        "dir": "up",
+        "t": 0.921052632
+      },
+      {
+        "index": 6,
+        "step": 8,
+        "dir": "down",
+        "t": 1.052631579
+      },
+      {
+        "index": 7,
+        "step": 10,
+        "dir": "down",
+        "t": 1.315789474
+      }
+    ]
+  },
+  {
+    "id": "shuffle_ex01",
+    "bpm": 96,
+    "loopBeats": 4,
+    "loopDuration": 2.5,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.40625
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "up",
+        "t": 1.03125
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.65625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.28125
+      }
+    ]
+  },
+  {
+    "id": "shuffle_ex02",
+    "bpm": 96,
+    "loopBeats": 4,
+    "loopDuration": 2.5,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.40625
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "up",
+        "t": 1.03125
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.65625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.28125
+      }
+    ]
+  },
+  {
+    "id": "shuffle_ex03",
+    "bpm": 96,
+    "loopBeats": 4,
+    "loopDuration": 2.5,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.40625
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "up",
+        "t": 1.03125
+      },
+      {
+        "index": 4,
+        "step": 5,
+        "dir": "up",
+        "t": 1.65625
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 6,
+        "step": 7,
+        "dir": "up",
+        "t": 2.28125
+      }
+    ]
+  },
+  {
+    "id": "shuffle_ex04",
+    "bpm": 96,
+    "loopBeats": 4,
+    "loopDuration": 2.5,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      }
+    ]
+  },
+  {
+    "id": "shuffle_ex05",
+    "bpm": 96,
+    "loopBeats": 4,
+    "loopDuration": 2.5,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 1.03125
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 4,
+        "step": 5,
+        "dir": "up",
+        "t": 1.65625
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 6,
+        "step": 7,
+        "dir": "up",
+        "t": 2.28125
+      }
+    ]
+  },
+  {
+    "id": "shuffle_ex06",
+    "bpm": 96,
+    "loopBeats": 4,
+    "loopDuration": 2.5,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 1.03125
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 4,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 5,
+        "step": 7,
+        "dir": "up",
+        "t": 2.28125
+      }
+    ]
+  },
+  {
+    "id": "slow-gogo_ex01",
+    "bpm": 74,
+    "loopBeats": 4,
+    "loopDuration": 3.243243243,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.405405405
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "up",
+        "t": 0.810810811
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.216216216
+      },
+      {
+        "index": 4,
+        "step": 8,
+        "dir": "down",
+        "t": 1.621621622
+      },
+      {
+        "index": 5,
+        "step": 10,
+        "dir": "down",
+        "t": 2.027027027
+      },
+      {
+        "index": 6,
+        "step": 12,
+        "dir": "up",
+        "t": 2.432432432
+      },
+      {
+        "index": 7,
+        "step": 14,
+        "dir": "down",
+        "t": 2.837837838
+      }
+    ]
+  },
+  {
+    "id": "slow-gogo_ex02",
+    "bpm": 74,
+    "loopBeats": 4,
+    "loopDuration": 3.243243243,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.405405405
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "up",
+        "t": 0.810810811
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.216216216
+      },
+      {
+        "index": 4,
+        "step": 7,
+        "dir": "down",
+        "t": 1.418918919
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 1.621621622
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 2.027027027
+      },
+      {
+        "index": 7,
+        "step": 12,
+        "dir": "up",
+        "t": 2.432432432
+      },
+      {
+        "index": 8,
+        "step": 14,
+        "dir": "down",
+        "t": 2.837837838
+      }
+    ]
+  },
+  {
+    "id": "slow-gogo_ex03",
+    "bpm": 74,
+    "loopBeats": 4,
+    "loopDuration": 3.243243243,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.405405405
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.810810811
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 1.216216216
+      },
+      {
+        "index": 4,
+        "step": 7,
+        "dir": "up",
+        "t": 1.418918919
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 1.621621622
+      },
+      {
+        "index": 6,
+        "step": 9,
+        "dir": "up",
+        "t": 1.824324324
+      },
+      {
+        "index": 7,
+        "step": 10,
+        "dir": "down",
+        "t": 2.027027027
+      },
+      {
+        "index": 8,
+        "step": 11,
+        "dir": "up",
+        "t": 2.22972973
+      },
+      {
+        "index": 9,
+        "step": 12,
+        "dir": "down",
+        "t": 2.432432432
+      },
+      {
+        "index": 10,
+        "step": 14,
+        "dir": "down",
+        "t": 2.837837838
+      },
+      {
+        "index": 11,
+        "step": 15,
+        "dir": "up",
+        "t": 3.040540541
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex01",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex02",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "up",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "up",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "up",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex03",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex04",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex05",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "up",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "up",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex06",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex07",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex08",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex09",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex10",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "up",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex11",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "down",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "up",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "down",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "up",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "down",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "down",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "down",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "slow-rock_ex12",
+    "bpm": 64,
+    "loopBeats": 4,
+    "loopDuration": 3.75,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 1,
+        "dir": "up",
+        "t": 0.3125
+      },
+      {
+        "index": 2,
+        "step": 2,
+        "dir": "down",
+        "t": 0.625
+      },
+      {
+        "index": 3,
+        "step": 3,
+        "dir": "down",
+        "t": 0.9375
+      },
+      {
+        "index": 4,
+        "step": 4,
+        "dir": "down",
+        "t": 1.25
+      },
+      {
+        "index": 5,
+        "step": 5,
+        "dir": "up",
+        "t": 1.5625
+      },
+      {
+        "index": 6,
+        "step": 6,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 7,
+        "step": 7,
+        "dir": "down",
+        "t": 2.1875
+      },
+      {
+        "index": 8,
+        "step": 8,
+        "dir": "up",
+        "t": 2.5
+      },
+      {
+        "index": 9,
+        "step": 9,
+        "dir": "down",
+        "t": 2.8125
+      },
+      {
+        "index": 10,
+        "step": 10,
+        "dir": "up",
+        "t": 3.125
+      },
+      {
+        "index": 11,
+        "step": 11,
+        "dir": "up",
+        "t": 3.4375
+      }
+    ]
+  },
+  {
+    "id": "calypso_ex01",
+    "bpm": 104,
+    "loopBeats": 4,
+    "loopDuration": 2.307692308,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 4,
+        "dir": "down",
+        "t": 0.576923077
+      },
+      {
+        "index": 2,
+        "step": 6,
+        "dir": "up",
+        "t": 0.865384615
+      },
+      {
+        "index": 3,
+        "step": 10,
+        "dir": "up",
+        "t": 1.442307692
+      },
+      {
+        "index": 4,
+        "step": 12,
+        "dir": "down",
+        "t": 1.730769231
+      }
+    ]
+  },
+  {
+    "id": "calypso_ex02",
+    "bpm": 104,
+    "loopBeats": 4,
+    "loopDuration": 2.307692308,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 4,
+        "dir": "down",
+        "t": 0.576923077
+      },
+      {
+        "index": 2,
+        "step": 6,
+        "dir": "up",
+        "t": 0.865384615
+      },
+      {
+        "index": 3,
+        "step": 10,
+        "dir": "up",
+        "t": 1.442307692
+      },
+      {
+        "index": 4,
+        "step": 12,
+        "dir": "down",
+        "t": 1.730769231
+      },
+      {
+        "index": 5,
+        "step": 14,
+        "dir": "up",
+        "t": 2.019230769
+      }
+    ]
+  },
+  {
+    "id": "calypso_ex03",
+    "bpm": 104,
+    "loopBeats": 4,
+    "loopDuration": 2.307692308,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "up",
+        "t": 0.288461538
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.576923077
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "up",
+        "t": 0.865384615
+      },
+      {
+        "index": 4,
+        "step": 10,
+        "dir": "up",
+        "t": 1.442307692
+      },
+      {
+        "index": 5,
+        "step": 12,
+        "dir": "down",
+        "t": 1.730769231
+      },
+      {
+        "index": 6,
+        "step": 14,
+        "dir": "up",
+        "t": 2.019230769
+      }
+    ]
+  },
+  {
+    "id": "country_ex01",
+    "bpm": 112,
+    "loopBeats": 4,
+    "loopDuration": 2.142857143,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.267857143
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 0.401785714
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 0.535714286
+      },
+      {
+        "index": 4,
+        "step": 5,
+        "dir": "up",
+        "t": 0.669642857
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 0.803571429
+      },
+      {
+        "index": 6,
+        "step": 8,
+        "dir": "down",
+        "t": 1.071428571
+      },
+      {
+        "index": 7,
+        "step": 10,
+        "dir": "down",
+        "t": 1.339285714
+      },
+      {
+        "index": 8,
+        "step": 11,
+        "dir": "up",
+        "t": 1.473214286
+      },
+      {
+        "index": 9,
+        "step": 12,
+        "dir": "down",
+        "t": 1.607142857
+      },
+      {
+        "index": 10,
+        "step": 13,
+        "dir": "up",
+        "t": 1.741071429
+      },
+      {
+        "index": 11,
+        "step": 14,
+        "dir": "down",
+        "t": 1.875
+      }
+    ]
+  },
+  {
+    "id": "country_ex02",
+    "bpm": 112,
+    "loopBeats": 4,
+    "loopDuration": 2.142857143,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.267857143
+      },
+      {
+        "index": 2,
+        "step": 3,
+        "dir": "up",
+        "t": 0.401785714
+      },
+      {
+        "index": 3,
+        "step": 4,
+        "dir": "down",
+        "t": 0.535714286
+      },
+      {
+        "index": 4,
+        "step": 5,
+        "dir": "up",
+        "t": 0.669642857
+      },
+      {
+        "index": 5,
+        "step": 6,
+        "dir": "down",
+        "t": 0.803571429
+      },
+      {
+        "index": 6,
+        "step": 7,
+        "dir": "up",
+        "t": 0.9375
+      },
+      {
+        "index": 7,
+        "step": 8,
+        "dir": "down",
+        "t": 1.071428571
+      },
+      {
+        "index": 8,
+        "step": 10,
+        "dir": "down",
+        "t": 1.339285714
+      },
+      {
+        "index": 9,
+        "step": 11,
+        "dir": "up",
+        "t": 1.473214286
+      },
+      {
+        "index": 10,
+        "step": 12,
+        "dir": "down",
+        "t": 1.607142857
+      },
+      {
+        "index": 11,
+        "step": 13,
+        "dir": "up",
+        "t": 1.741071429
+      },
+      {
+        "index": 12,
+        "step": 14,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 13,
+        "step": 15,
+        "dir": "up",
+        "t": 2.008928571
+      }
+    ]
+  },
+  {
+    "id": "country_ex03",
+    "bpm": 112,
+    "loopBeats": 4,
+    "loopDuration": 2.142857143,
+    "strokes": [
+      {
+        "index": 0,
+        "step": 0,
+        "dir": "down",
+        "t": 0
+      },
+      {
+        "index": 1,
+        "step": 2,
+        "dir": "down",
+        "t": 0.267857143
+      },
+      {
+        "index": 2,
+        "step": 4,
+        "dir": "down",
+        "t": 0.535714286
+      },
+      {
+        "index": 3,
+        "step": 6,
+        "dir": "down",
+        "t": 0.803571429
+      },
+      {
+        "index": 4,
+        "step": 7,
+        "dir": "up",
+        "t": 0.9375
+      },
+      {
+        "index": 5,
+        "step": 8,
+        "dir": "down",
+        "t": 1.071428571
+      },
+      {
+        "index": 6,
+        "step": 10,
+        "dir": "down",
+        "t": 1.339285714
+      },
+      {
+        "index": 7,
+        "step": 12,
+        "dir": "down",
+        "t": 1.607142857
+      },
+      {
+        "index": 8,
+        "step": 14,
+        "dir": "down",
+        "t": 1.875
+      },
+      {
+        "index": 9,
+        "step": 15,
+        "dir": "up",
+        "t": 2.008928571
+      }
+    ]
+  }
+]
