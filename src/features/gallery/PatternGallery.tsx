@@ -8,6 +8,7 @@ type PatternGalleryProps = {
   onToggleFavorite: (patternId: string) => void;
   onOpen: (patternId: string) => void;
   onPreview?: (pattern: StrumPattern) => void;
+  previewingId?: string | null;
 };
 
 export function PatternGallery({
@@ -16,6 +17,7 @@ export function PatternGallery({
   onToggleFavorite,
   onOpen,
   onPreview,
+  previewingId = null,
 }: PatternGalleryProps) {
   if (patterns.length === 0) {
     return (
@@ -39,6 +41,7 @@ export function PatternGallery({
           onToggleFavorite={onToggleFavorite}
           onOpen={onOpen}
           onPreview={onPreview}
+          isPreviewing={previewingId === pattern.id}
         />
       ))}
     </section>

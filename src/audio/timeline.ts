@@ -19,7 +19,10 @@ export type Timeline = {
   secPerBeat: number;
   /** offset 오름차순. 같은 offset이면 marker → click → stroke 순. */
   events: TimelineEvent[];
-  /** `events` 중 stroke만, offset 오름차순. 하이라이트 계산용. */
+  /**
+   * 모든 스트로크(offset 오름차순). 하이라이트 계산용이라 믹스와 무관하게 항상 채운다.
+   * ("클릭만" 모드에서도 학생은 하이라이트를 보며 직접 친다.)
+   */
   strokeEvents: StrokeEvent[];
 };
 
@@ -45,15 +48,17 @@ export function buildTimeline(rhythm: StrumRhythm, bpm: number, mix: Mix): Timel
     }
   }
 
+  const strokeEvents: StrokeEvent[] = rhythm.strokes
+    .map((stroke, strokeIndex) => ({
+      kind: 'stroke' as const,
+      offset: strokeTimeInBar(stroke, rhythm, bpm),
+      strokeIndex,
+      stroke,
+    }))
+    .sort((a, b) => a.offset - b.offset);
+
   if (mix !== 'click') {
-    rhythm.strokes.forEach((stroke, strokeIndex) => {
-      events.push({
-        kind: 'stroke',
-        offset: strokeTimeInBar(stroke, rhythm, bpm),
-        strokeIndex,
-        stroke,
-      });
-    });
+    events.push(...strokeEvents);
   }
 
   events.sort((a, b) => a.offset - b.offset || kindRank[a.kind] - kindRank[b.kind]);
@@ -62,7 +67,7 @@ export function buildTimeline(rhythm: StrumRhythm, bpm: number, mix: Mix): Timel
     loopDuration: loopDuration(rhythm, bpm),
     secPerBeat: spb,
     events,
-    strokeEvents: events.filter((event): event is StrokeEvent => event.kind === 'stroke'),
+    strokeEvents,
   };
 }
 

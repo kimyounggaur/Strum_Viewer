@@ -1,4 +1,4 @@
-import { Heart, Play, Star } from 'lucide-react';
+import { Heart, Play, Square, Star } from 'lucide-react';
 import { categoryById } from '../../data/strumCategories';
 import type { StrumPattern } from '../../data/strumTypes';
 import { IconButton } from '../../components/ui/IconButton';
@@ -9,6 +9,7 @@ type PatternCardProps = {
   onToggleFavorite: (patternId: string) => void;
   onOpen: (patternId: string) => void;
   onPreview?: (pattern: StrumPattern) => void;
+  isPreviewing?: boolean;
 };
 
 const difficultyLabel: Record<StrumPattern['difficulty'], string> = {
@@ -23,11 +24,17 @@ export function PatternCard({
   onToggleFavorite,
   onOpen,
   onPreview,
+  isPreviewing = false,
 }: PatternCardProps) {
   const category = categoryById[pattern.categoryId];
 
   return (
-    <article className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft">
+    <article
+      className={[
+        'overflow-hidden rounded-lg border bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft',
+        isPreviewing ? 'border-teal-500 ring-2 ring-teal-200' : 'border-slate-200',
+      ].join(' ')}
+    >
       <button
         type="button"
         onClick={() => onOpen(pattern.id)}
@@ -72,8 +79,19 @@ export function PatternCard({
 
           <div className="flex gap-2">
             {pattern.rhythm && onPreview ? (
-              <IconButton label={`${pattern.title} 미리듣기`} onClick={() => onPreview(pattern)}>
-                <Play className="h-4 w-4" aria-hidden="true" />
+              <IconButton
+                label={
+                  isPreviewing ? `${pattern.title} 미리듣기 정지` : `${pattern.title} 미리듣기`
+                }
+                active={isPreviewing}
+                aria-pressed={isPreviewing}
+                onClick={() => onPreview(pattern)}
+              >
+                {isPreviewing ? (
+                  <Square className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                ) : (
+                  <Play className="h-4 w-4" aria-hidden="true" />
+                )}
               </IconButton>
             ) : null}
             <IconButton

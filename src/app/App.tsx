@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AudioEngine } from '../audio/AudioEngine';
+import { useCallback, useMemo, useState } from 'react';
 import { AppHeader } from '../features/gallery/AppHeader';
 import { CategorySelector } from '../features/gallery/CategorySelector';
 import { EmptyState } from '../features/gallery/EmptyState';
@@ -11,6 +10,7 @@ import { getPatternById, strumPatterns } from '../data/patterns';
 import type { SortMode, StrumCategoryId, StrumPattern, ViewMode } from '../data/strumTypes';
 import { useFavorites } from '../hooks/useFavorites';
 import { useFilteredPatterns } from '../hooks/useFilteredPatterns';
+import { usePreview } from '../hooks/usePreview';
 import { useRecentPatterns } from '../hooks/useRecentPatterns';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   const [sortMode, setSortMode] = useState<SortMode>('exercise');
   const { favoriteSet, isFavorite, toggleFavorite } = useFavorites();
   const { recentPatterns, rememberPattern } = useRecentPatterns();
-  const previewEngineRef = useRef<AudioEngine | null>(null);
+  const { previewingId, toggle: togglePreview } = usePreview();
 
   const selectedPattern = getPatternById(selectedPatternId);
   const activeCategoryId = viewMode === 'home' && searchTerm ? 'all' : selectedCategoryId;
@@ -72,20 +72,11 @@ function App() {
     [rememberPattern],
   );
 
-  const previewPattern = useCallback(async (pattern: StrumPattern) => {
-    if (!pattern.rhythm) return;
-    previewEngineRef.current?.stop();
-    const engine = previewEngineRef.current ?? new AudioEngine();
-    previewEngineRef.current = engine;
-    engine.load(pattern, pattern.recommendedBpm.default, 'guitar');
-    await engine.start({ loop: false, countIn: false, metronome: false });
-  }, []);
-
-  useEffect(
-    () => () => {
-      previewEngineRef.current?.dispose();
+  const previewPattern = useCallback(
+    (pattern: StrumPattern) => {
+      void togglePreview(pattern);
     },
-    [],
+    [togglePreview],
   );
 
   const categoryTitle = useMemo(() => {
@@ -102,6 +93,7 @@ function App() {
       <main className="mx-auto w-full max-w-7xl space-y-6 px-4 py-6 sm:px-6 lg:py-8">
         {viewMode === 'detail' && selectedPattern ? (
           <PatternDetail
+            key={selectedPattern.id}
             pattern={selectedPattern}
             isFavorite={isFavorite(selectedPattern.id)}
             onToggleFavorite={toggleFavorite}
@@ -120,6 +112,7 @@ function App() {
                 onOpen={openPattern}
                 onToggleFavorite={toggleFavorite}
                 onPreview={previewPattern}
+                previewingId={previewingId}
               />
             ) : null}
 
@@ -148,6 +141,7 @@ function App() {
                 onToggleFavorite={toggleFavorite}
                 onOpen={openPattern}
                 onPreview={previewPattern}
+                previewingId={previewingId}
               />
             </section>
           </>
@@ -164,6 +158,7 @@ type HomeSectionsProps = {
   onOpen: (patternId: string) => void;
   onToggleFavorite: (patternId: string) => void;
   onPreview: (pattern: StrumPattern) => void;
+  previewingId: string | null;
 };
 
 function HomeSections({
@@ -173,6 +168,7 @@ function HomeSections({
   onOpen,
   onToggleFavorite,
   onPreview,
+  previewingId,
 }: HomeSectionsProps) {
   return (
     <div className="grid gap-4 xl:grid-cols-2">
@@ -187,6 +183,7 @@ function HomeSections({
             onToggleFavorite={onToggleFavorite}
             onOpen={onOpen}
             onPreview={onPreview}
+            previewingId={previewingId}
           />
         ) : (
           <EmptyState
@@ -207,6 +204,7 @@ function HomeSections({
             onToggleFavorite={onToggleFavorite}
             onOpen={onOpen}
             onPreview={onPreview}
+            previewingId={previewingId}
           />
         ) : (
           <EmptyState

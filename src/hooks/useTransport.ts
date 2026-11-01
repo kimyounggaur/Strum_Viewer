@@ -1,175 +1,160 @@
-/* eslint-disable react-hooks/set-state-in-effect, react-hooks/refs, react-hooks/immutability */
-// TODO(Phase 1 / PR-1.3): 엔진 이벤트 구독 + transportClock 구조로 재작성하면서 위 규칙 위반을 해소한다.
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { AudioEngine } from '../audio/AudioEngine';
-import { schedulePattern } from '../audio/schedulePattern';
+import { useCallback, useEffect, useState } from 'react';
+import { defaultEngineOptions, type EngineOptions, type EngineStatus } from '../audio/AudioEngine';
+import { engine } from '../audio/engineInstance';
 import type { Instrument, StrumPattern } from '../data/strumTypes';
-import { loopDuration } from '../lib/rhythm';
+import { useTransportSnapshot } from './useTransportClock';
 
-type TransportState = {
-  isPlaying: boolean;
+export const BPM_MIN = 30;
+export const BPM_MAX = 240;
+
+export function clampBpm(bpm: number): number {
+  return Math.round(Math.min(BPM_MAX, Math.max(BPM_MIN, bpm)));
+}
+
+export type Transport = {
+  status: EngineStatus;
+  /** 재생 또는 카운트인 중 */
+  isRunning: boolean;
   bpm: number;
-  loop: boolean;
-  countIn: boolean;
-  metronome: boolean;
-  instrument: Instrument;
-  progress: number;
-  activeStrokeIndex: number;
-  engine: AudioEngine;
-  setBpm: (bpm: number) => void;
-  setLoop: (loop: boolean) => void;
-  setCountIn: (countIn: boolean) => void;
-  setMetronome: (metronome: boolean) => void;
-  setInstrument: (instrument: Instrument) => void;
-  start: () => Promise<void>;
+  options: EngineOptions;
+  /** idle이면 처음부터, paused면 이어서 */
+  play: () => Promise<void>;
+  pause: () => Promise<void>;
   stop: () => void;
   toggle: () => Promise<void>;
+  setBpm: (bpm: number) => void;
+  setOptions: (patch: Partial<EngineOptions>) => void;
 };
 
-export function useTransport(pattern: StrumPattern): TransportState {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [bpm, setBpmState] = useState(pattern.recommendedBpm.default);
-  const [loop, setLoop] = useState(true);
-  const [countIn, setCountIn] = useState(false);
-  const [metronome, setMetronome] = useState(true);
-  const [instrument, setInstrumentState] = useState<Instrument>('guitar');
-  const [progress, setProgress] = useState(0);
-  const [activeStrokeIndex, setActiveStrokeIndex] = useState(-1);
-  const engineRef = useRef<AudioEngine>(new AudioEngine());
-  const animationRef = useRef<number | null>(null);
-  const latestRef = useRef({ bpm, pattern, isPlaying });
+const optionsKey = 'strum-viewer:transport-options';
+const mixes = new Set(['both', 'strum', 'click']);
+const instruments = new Set<Instrument>(['guitar', 'ukulele']);
 
-  useEffect(() => {
-    latestRef.current = { bpm, pattern, isPlaying };
-  }, [bpm, isPlaying, pattern]);
+/** 저장된 옵션을 검증하며 읽는다. 이상한 값은 기본값으로. */
+function loadOptions(): EngineOptions {
+  try {
+    const raw = window.localStorage.getItem(optionsKey);
+    const parsed: unknown = raw ? JSON.parse(raw) : null;
+    if (!parsed || typeof parsed !== 'object') return { ...defaultEngineOptions };
+    const value = parsed as Record<string, unknown>;
+    return {
+      loop: typeof value.loop === 'boolean' ? value.loop : defaultEngineOptions.loop,
+      countIn: typeof value.countIn === 'boolean' ? value.countIn : defaultEngineOptions.countIn,
+      mix:
+        typeof value.mix === 'string' && mixes.has(value.mix)
+          ? (value.mix as EngineOptions['mix'])
+          : defaultEngineOptions.mix,
+      instrument:
+        typeof value.instrument === 'string' && instruments.has(value.instrument as Instrument)
+          ? (value.instrument as Instrument)
+          : defaultEngineOptions.instrument,
+      volume:
+        typeof value.volume === 'number' && value.volume >= 0 && value.volume <= 1
+          ? value.volume
+          : defaultEngineOptions.volume,
+    };
+  } catch {
+    return { ...defaultEngineOptions };
+  }
+}
 
-  useEffect(() => {
-    setBpmState(pattern.recommendedBpm.default);
-    setProgress(0);
-    setActiveStrokeIndex(-1);
-  }, [pattern.id, pattern.recommendedBpm.default]);
+function saveOptions(options: EngineOptions) {
+  try {
+    window.localStorage.setItem(optionsKey, JSON.stringify(options));
+  } catch {
+    // 저장소를 못 쓰는 환경(사생활 보호 모드 등)
+  }
+}
 
+/**
+ * 상세 화면의 재생 제어. 이 훅을 쓰는 컴포넌트는 `key={pattern.id}`로 마운트되어야 한다
+ * (패턴이 바뀌면 상태가 새로 시작되고, 언마운트 시 재생이 정지된다).
+ */
+export function useTransport(pattern: StrumPattern): Transport {
+  const snapshot = useTransportSnapshot();
+  const [bpm, setBpmState] = useState(() => clampBpm(pattern.recommendedBpm.default));
+  const [options, setOptionsState] = useState<EngineOptions>(loadOptions);
+
+  // 마운트: 이 패턴을 엔진에 올린다. 언마운트(뒤로/다른 패턴): 정지.
   useEffect(() => {
-    const engine = engineRef.current;
-    engine.load(pattern, bpm, instrument);
+    engine.load(pattern, bpm);
+    engine.setOptions(options);
+    return () => {
+      if (engine.patternId === pattern.id) {
+        engine.stop();
+      }
+    };
+    // 마운트 시점 값만 쓴다. 이후 bpm·options 변경은 setter가 엔진에 직접 반영한다.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pattern]);
+
+  // 엔진이 다른 패턴(카드 미리듣기 등)을 재생 중이면 이 화면은 idle로 본다.
+  const ownsEngine = engine.patternId === pattern.id;
+  const status: EngineStatus = ownsEngine ? snapshot.status : 'idle';
+
+  const ensureLoaded = useCallback(() => {
+    if (engine.patternId !== pattern.id) {
+      engine.load(pattern, bpm);
+    }
     engine.setBpm(bpm);
-    engine.setInstrument(instrument);
-  }, [bpm, instrument, pattern]);
+  }, [bpm, pattern]);
 
-  const tick = useCallback(() => {
-    const engine = engineRef.current;
-    const currentPattern = latestRef.current.pattern;
-    const context = engine.context;
-    const rhythm = currentPattern.rhythm;
-
-    if (context && rhythm && latestRef.current.isPlaying) {
-      const duration = loopDuration(rhythm, latestRef.current.bpm);
-      const rawProgress =
-        duration > 0 ? (context.currentTime - engine.currentBarStartTime) / duration : 0;
-      const nextProgress = Math.min(1, Math.max(0, rawProgress));
-      setProgress(nextProgress);
-
-      const elapsed = nextProgress * duration;
-      const events = schedulePattern(currentPattern, latestRef.current.bpm);
-      const active = events.reduce(
-        (last, event, index) => (event.timeInBar <= elapsed ? index : last),
-        -1,
-      );
-      setActiveStrokeIndex(active);
-    }
-
-    animationRef.current = window.requestAnimationFrame(tick);
-  }, []);
-
-  const stopAnimation = useCallback(() => {
-    if (animationRef.current !== null) {
-      window.cancelAnimationFrame(animationRef.current);
-      animationRef.current = null;
-    }
-  }, []);
-
-  const start = useCallback(async () => {
-    if (!pattern.rhythm) return;
-
-    const engine = engineRef.current;
-    engine.load(pattern, bpm, instrument);
-    await engine.start({
-      loop,
-      countIn,
-      metronome,
-      onBarStart: () => {
-        setProgress(0);
-        setActiveStrokeIndex(-1);
-      },
-    });
-    setIsPlaying(true);
-    latestRef.current = { bpm, pattern, isPlaying: true };
-    stopAnimation();
-    animationRef.current = window.requestAnimationFrame(tick);
-  }, [bpm, countIn, instrument, loop, metronome, pattern, stopAnimation, tick]);
-
-  const stop = useCallback(() => {
-    engineRef.current.stop();
-    stopAnimation();
-    setIsPlaying(false);
-    setProgress(0);
-    setActiveStrokeIndex(-1);
-    latestRef.current = { bpm, pattern, isPlaying: false };
-  }, [bpm, pattern, stopAnimation]);
-
-  const toggle = useCallback(async () => {
-    if (isPlaying) {
-      stop();
+  const play = useCallback(async () => {
+    if (engine.patternId === pattern.id && engine.status === 'paused') {
+      await engine.resume();
       return;
     }
+    ensureLoaded();
+    await engine.start(options);
+  }, [ensureLoaded, options, pattern.id]);
 
-    await start();
-  }, [isPlaying, start, stop]);
+  const pause = useCallback(() => engine.pause(), []);
 
-  const setBpm = useCallback((nextBpm: number) => {
-    setBpmState(nextBpm);
-    engineRef.current.setBpm(nextBpm);
-  }, []);
-
-  const setInstrument = useCallback((nextInstrument: Instrument) => {
-    setInstrumentState(nextInstrument);
-    engineRef.current.setInstrument(nextInstrument);
-  }, []);
-
-  useEffect(() => {
-    const engine = engineRef.current;
-
-    return () => {
+  const stop = useCallback(() => {
+    if (engine.patternId === pattern.id) {
       engine.stop();
-      stopAnimation();
-    };
-  }, [pattern.id, stopAnimation]);
+    }
+  }, [pattern.id]);
 
-  useEffect(
-    () => () => {
-      stopAnimation();
-      engineRef.current.dispose();
+  const toggle = useCallback(async () => {
+    if (status === 'playing' || status === 'counting-in') {
+      await engine.pause();
+    } else {
+      await play();
+    }
+  }, [play, status]);
+
+  const setBpm = useCallback(
+    (next: number) => {
+      if (!Number.isFinite(next)) return;
+      const clamped = clampBpm(next);
+      setBpmState(clamped);
+      if (engine.patternId === pattern.id) {
+        engine.setBpm(clamped);
+      }
     },
-    [stopAnimation],
+    [pattern.id],
   );
 
+  const setOptions = useCallback((patch: Partial<EngineOptions>) => {
+    setOptionsState((previous) => {
+      const next = { ...previous, ...patch };
+      saveOptions(next);
+      return next;
+    });
+    engine.setOptions(patch);
+  }, []);
+
   return {
-    isPlaying,
+    status,
+    isRunning: status === 'playing' || status === 'counting-in',
     bpm,
-    loop,
-    countIn,
-    metronome,
-    instrument,
-    progress,
-    activeStrokeIndex,
-    engine: engineRef.current,
-    setBpm,
-    setLoop,
-    setCountIn,
-    setMetronome,
-    setInstrument,
-    start,
+    options,
+    play,
+    pause,
     stop,
     toggle,
+    setBpm,
+    setOptions,
   };
 }

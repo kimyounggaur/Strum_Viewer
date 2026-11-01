@@ -1,14 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { strumPatterns } from '../data/patterns';
 import { loopBeats, loopDuration } from '../lib/rhythm';
-import { schedulePattern } from './schedulePattern';
+import { buildTimeline } from './timeline';
 
 /**
  * 골든 회귀 테스트.
  *
- * 현재 엔진이 76개 패턴(735 스트로크)을 추천 BPM에서 어떤 시각에 예약하는지를
- * `__golden__/timeline.golden.json`에 고정한다. Phase 1에서 스케줄러를 노트 단위
- * 룩어헤드로 재작성한 뒤에도 새 `buildTimeline()`이 같은 값을 내야 한다.
+ * 76개 패턴(735 스트로크)을 추천 BPM에서 어떤 시각에 예약하는지를
+ * `__golden__/timeline.golden.json`에 고정한다. 이 파일은 Phase 0에서 옛 엔진
+ * (`schedulePattern`)으로 만들었고, Phase 1의 `buildTimeline()`이 같은 파일을 그대로
+ * 통과함으로써 두 구현의 타이밍이 동일함을 보장한다.
  *
  * 골든을 의도적으로 바꿀 때만 `npx vitest run -u`로 갱신한다.
  */
@@ -30,17 +31,17 @@ export function buildGolden(): GoldenEntry[] {
       bpm,
       loopBeats: loopBeats(rhythm),
       loopDuration: Number(loopDuration(rhythm, bpm).toFixed(9)),
-      strokes: schedulePattern(pattern, bpm).map((event) => ({
-        index: event.index,
+      strokes: buildTimeline(rhythm, bpm, 'strum').strokeEvents.map((event) => ({
+        index: event.strokeIndex,
         step: event.stroke.step,
         dir: event.stroke.dir,
-        t: Number(event.timeInBar.toFixed(9)),
+        t: Number(event.offset.toFixed(9)),
       })),
     };
   });
 }
 
-describe('schedulePattern 골든', () => {
+describe('타임라인 골든', () => {
   it('76개 패턴·735개 스트로크의 예약 시각이 골든과 일치한다', async () => {
     const golden = buildGolden();
     expect(golden).toHaveLength(76);

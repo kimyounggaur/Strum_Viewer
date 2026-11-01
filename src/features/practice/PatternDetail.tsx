@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight, ChevronLeft, Heart } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { categoryById } from '../../data/strumCategories';
 import type { StrumPattern } from '../../data/strumTypes';
 import { getNeighborPatterns } from '../../data/patterns';
@@ -7,6 +7,7 @@ import { IconButton } from '../../components/ui/IconButton';
 import { KaraokeTrack } from './KaraokeTrack';
 import { PatternImageViewer } from '../viewer/PatternImageViewer';
 import { PracticePanel } from './PracticePanel';
+import { useTransport } from '../../hooks/useTransport';
 
 type PatternDetailProps = {
   pattern: StrumPattern;
@@ -25,11 +26,9 @@ export function PatternDetail({
 }: PatternDetailProps) {
   const category = categoryById[pattern.categoryId];
   const neighbors = getNeighborPatterns(pattern);
-  const [transportState, setTransportState] = useState({
-    isPlaying: false,
-    progress: 0,
-    activeStrokeIndex: -1,
-  });
+  // 이 컴포넌트는 App에서 key={pattern.id}로 마운트된다 → 패턴이 바뀌면 재생 상태가 새로 시작된다.
+  const transport = useTransport(pattern);
+  const { toggle } = transport;
 
   const goPrevious = useCallback(() => {
     if (neighbors.previous) {
@@ -45,13 +44,24 @@ export function PatternDetail({
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
       const target = event.target as HTMLElement | null;
       const tagName = target?.tagName.toLowerCase();
-      if (tagName === 'input' || tagName === 'textarea' || tagName === 'select') {
+      if (
+        tagName === 'input' ||
+        tagName === 'textarea' ||
+        tagName === 'select' ||
+        target?.isContentEditable
+      ) {
         return;
       }
+      // 전체화면 중의 ESC·화살표는 브라우저/뷰어 몫
+      if (document.fullscreenElement) return;
 
-      if (event.key === 'Escape') {
+      if (event.key === ' ' && tagName !== 'button') {
+        event.preventDefault();
+        void toggle();
+      } else if (event.key === 'Escape') {
         onBack();
       } else if (event.key === 'ArrowLeft') {
         goPrevious();
@@ -62,7 +72,7 @@ export function PatternDetail({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [goNext, goPrevious, onBack]);
+  }, [goNext, goPrevious, onBack, toggle]);
 
   return (
     <section className="space-y-4">
@@ -117,24 +127,12 @@ export function PatternDetail({
         </div>
       </div>
 
-      {pattern.rhythm ? (
-        <KaraokeTrack
-          pattern={pattern}
-          progress={transportState.progress}
-          activeStrokeIndex={transportState.activeStrokeIndex}
-          isPlaying={transportState.isPlaying}
-        />
-      ) : null}
+      {pattern.rhythm ? <KaraokeTrack pattern={pattern} /> : null}
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
-        <PatternImageViewer
-          pattern={pattern}
-          progress={transportState.progress}
-          activeStrokeIndex={transportState.activeStrokeIndex}
-          isPlaying={transportState.isPlaying}
-        />
+        <PatternImageViewer pattern={pattern} />
         <aside className="space-y-4 xl:sticky xl:top-24 xl:self-start">
-          <PracticePanel pattern={pattern} onTransportChange={setTransportState} />
+          <PracticePanel pattern={pattern} transport={transport} />
           <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
             <div className="font-black text-slate-900">연습 정보</div>
             <dl className="mt-3 grid grid-cols-2 gap-2">

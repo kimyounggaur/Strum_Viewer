@@ -8,20 +8,12 @@ type FitMode = 'fit-width' | 'fit-height' | 'actual' | 'custom';
 
 type PatternImageViewerProps = {
   pattern: StrumPattern;
-  progress: number;
-  activeStrokeIndex: number;
-  isPlaying: boolean;
 };
 
 const minZoom = 0.2;
 const maxZoom = 3;
 
-export function PatternImageViewer({
-  pattern,
-  progress,
-  activeStrokeIndex,
-  isPlaying,
-}: PatternImageViewerProps) {
+export function PatternImageViewer({ pattern }: PatternImageViewerProps) {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [zoom, setZoom] = useState(1);
   const [fitMode, setFitMode] = useState<FitMode>('fit-width');
@@ -230,12 +222,7 @@ export function PatternImageViewer({
               event.currentTarget.src = '/strums/placeholders/pattern-placeholder.svg';
             }}
           />
-          <StrumSheet
-            pattern={pattern}
-            progress={progress}
-            activeStrokeIndex={activeStrokeIndex}
-            isPlaying={isPlaying}
-          />
+          <StrumSheet pattern={pattern} />
         </div>
       </div>
     </div>

@@ -63,7 +63,8 @@ describe('buildTimeline — 믹스', () => {
     expect(buildTimeline(waltz, 60, 'strum').events.some((e) => e.kind === 'click')).toBe(false);
     const clickOnly = buildTimeline(waltz, 60, 'click');
     expect(clickOnly.events.some((e) => e.kind === 'stroke')).toBe(false);
-    expect(clickOnly.strokeEvents).toHaveLength(0);
+    // 하이라이트용 strokeEvents는 믹스와 무관
+    expect(clickOnly.strokeEvents).toHaveLength(3);
   });
 
   it('클릭 악센트는 마디 첫 박', () => {

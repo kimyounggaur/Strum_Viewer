@@ -1,5 +1,9 @@
 import type { Instrument, Stroke } from '../../data/strumTypes';
 
+/**
+ * 합성 음색. 모든 함수는 만든 소스 노드를 반환한다.
+ * 엔진은 반환된 노드를 추적해 정지 시 즉시 끊는다.
+ */
 type VoiceProfile = {
   frequencies: number[];
   decay: number;
@@ -26,13 +30,13 @@ function profileFor(instrument: Instrument): VoiceProfile {
 }
 
 function playString(
-  context: AudioContext,
+  context: BaseAudioContext,
   destination: AudioNode,
   frequency: number,
   time: number,
   gainValue: number,
   decay: number,
-) {
+): AudioScheduledSourceNode {
   const oscillator = context.createOscillator();
   const gain = context.createGain();
 
@@ -46,17 +50,19 @@ function playString(
   oscillator.connect(gain).connect(destination);
   oscillator.start(time);
   oscillator.stop(time + decay + 0.05);
+  return oscillator;
 }
 
+/** 쉼표·붙임줄은 소리를 내지 않으므로 빈 배열을 반환한다. */
 export function playStrum(
-  context: AudioContext,
+  context: BaseAudioContext,
   time: number,
   stroke: Stroke,
   instrument: Instrument,
-  destination: AudioNode = context.destination,
-) {
+  destination: AudioNode,
+): AudioScheduledSourceNode[] {
   if (stroke.dir === 'rest' || stroke.tie) {
-    return;
+    return [];
   }
 
   const profile = profileFor(instrument);
@@ -67,8 +73,7 @@ export function playStrum(
   filter.connect(destination);
 
   if (stroke.dir === 'mute') {
-    playMute(context, filter, time, stroke.accent ? 0.16 : 0.1);
-    return;
+    return [playMute(context, filter, time, stroke.accent ? 0.16 : 0.1)];
   }
 
   const frequencies =
@@ -76,7 +81,7 @@ export function playStrum(
   const spacing = instrument === 'ukulele' ? 0.008 : 0.01;
   const gain = profile.gain * (stroke.accent ? 1.45 : 1);
 
-  frequencies.forEach((frequency, index) => {
+  return frequencies.map((frequency, index) =>
     playString(
       context,
       filter,
@@ -84,11 +89,16 @@ export function playStrum(
       time + index * spacing,
       gain / frequencies.length,
       profile.decay,
-    );
-  });
+    ),
+  );
 }
 
-function playMute(context: AudioContext, destination: AudioNode, time: number, gainValue: number) {
+function playMute(
+  context: BaseAudioContext,
+  destination: AudioNode,
+  time: number,
+  gainValue: number,
+): AudioScheduledSourceNode {
   const bufferSize = Math.floor(context.sampleRate * 0.06);
   const buffer = context.createBuffer(1, bufferSize, context.sampleRate);
   const samples = buffer.getChannelData(0);
@@ -105,14 +115,15 @@ function playMute(context: AudioContext, destination: AudioNode, time: number, g
   source.connect(gain).connect(destination);
   source.start(time);
   source.stop(time + 0.07);
+  return source;
 }
 
 export function playMetronomeClick(
-  context: AudioContext,
+  context: BaseAudioContext,
   time: number,
   accent: boolean,
-  destination: AudioNode = context.destination,
-) {
+  destination: AudioNode,
+): AudioScheduledSourceNode[] {
   const oscillator = context.createOscillator();
   const gain = context.createGain();
 
@@ -125,4 +136,5 @@ export function playMetronomeClick(
   oscillator.connect(gain).connect(destination);
   oscillator.start(time);
   oscillator.stop(time + 0.07);
+  return [oscillator];
 }
