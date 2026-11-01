@@ -1,7 +1,7 @@
 import { Expand, Maximize2, MoveHorizontal, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { StrumPattern } from '../data/strumTypes';
-import { IconButton } from './IconButton';
+import type { StrumPattern } from '../../data/strumTypes';
+import { IconButton } from '../../components/ui/IconButton';
 import { StrumSheet } from './StrumSheet';
 
 type FitMode = 'fit-width' | 'fit-height' | 'actual' | 'custom';

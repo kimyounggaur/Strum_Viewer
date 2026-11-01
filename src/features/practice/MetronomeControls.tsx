@@ -1,7 +1,7 @@
 import { Pause, Play, Timer, Volume2, VolumeX } from 'lucide-react';
-import type { StrumPattern } from '../data/strumTypes';
-import { useMetronome } from '../hooks/useMetronome';
-import { IconButton } from './IconButton';
+import type { StrumPattern } from '../../data/strumTypes';
+import { useMetronome } from '../../hooks/useMetronome';
+import { IconButton } from '../../components/ui/IconButton';
 
 type MetronomeControlsProps = {
   pattern: StrumPattern;

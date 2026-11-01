@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUp, VolumeX } from 'lucide-react';
-import type { StrumPattern } from '../data/strumTypes';
-import { cellsInLoop, formatBeatLabels } from '../lib/rhythm';
+import type { StrumPattern } from '../../data/strumTypes';
+import { cellsInLoop, formatBeatLabels } from '../../lib/rhythm';
 
 type KaraokeTrackProps = {
   pattern: StrumPattern;

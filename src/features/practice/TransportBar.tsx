@@ -1,6 +1,6 @@
 import { Guitar, Pause, Play, Repeat, Timer, Volume2 } from 'lucide-react';
-import type { Instrument, StrumPattern } from '../data/strumTypes';
-import { IconButton } from './IconButton';
+import type { Instrument, StrumPattern } from '../../data/strumTypes';
+import { IconButton } from '../../components/ui/IconButton';
 
 type TransportBarProps = {
   pattern: StrumPattern;

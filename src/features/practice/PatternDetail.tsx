@@ -1,11 +1,11 @@
 import { ArrowLeft, ArrowRight, ChevronLeft, Heart } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
-import { categoryById } from '../data/strumCategories';
-import type { StrumPattern } from '../data/strumTypes';
-import { getNeighborPatterns } from '../data/patterns';
-import { IconButton } from './IconButton';
+import { categoryById } from '../../data/strumCategories';
+import type { StrumPattern } from '../../data/strumTypes';
+import { getNeighborPatterns } from '../../data/patterns';
+import { IconButton } from '../../components/ui/IconButton';
 import { KaraokeTrack } from './KaraokeTrack';
-import { PatternImageViewer } from './PatternImageViewer';
+import { PatternImageViewer } from '../viewer/PatternImageViewer';
 import { PracticePanel } from './PracticePanel';
 
 type PatternDetailProps = {

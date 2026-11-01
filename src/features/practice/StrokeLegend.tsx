@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUp, CircleDotDashed, VolumeX } from 'lucide-react';
-import type { StrumPattern } from '../data/strumTypes';
+import type { StrumPattern } from '../../data/strumTypes';
 
 type StrokeLegendProps = {
   pattern: StrumPattern;

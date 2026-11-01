@@ -1,7 +1,7 @@
 import type { Instrument, StrumPattern } from '../data/strumTypes';
 import { loopBeats, loopDuration, secPerBeat } from '../lib/rhythm';
 import { schedulePattern, type ScheduledStroke } from './schedulePattern';
-import { playMetronomeClick, playStrum } from './strumVoices';
+import { playMetronomeClick, playStrum } from './voices/synth';
 
 type StartOptions = {
   loop: boolean;

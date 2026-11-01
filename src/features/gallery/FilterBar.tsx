@@ -1,4 +1,4 @@
-import type { SortMode } from '../data/strumTypes';
+import type { SortMode } from '../../data/strumTypes';
 
 type FilterBarProps = {
   sortMode: SortMode;

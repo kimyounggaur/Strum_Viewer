@@ -1,4 +1,4 @@
-import type { Instrument, Stroke } from '../data/strumTypes';
+import type { Instrument, Stroke } from '../../data/strumTypes';
 
 type VoiceProfile = {
   frequencies: number[];

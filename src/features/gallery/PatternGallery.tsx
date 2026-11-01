@@ -1,4 +1,4 @@
-import type { StrumPattern } from '../data/strumTypes';
+import type { StrumPattern } from '../../data/strumTypes';
 import { EmptyState } from './EmptyState';
 import { PatternCard } from './PatternCard';
 

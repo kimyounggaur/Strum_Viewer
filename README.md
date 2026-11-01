@@ -25,13 +25,26 @@ public/strums/                 # 생성물: 스크립트가 ASCII 파일명으�
 scripts/prepareStrumAssets.mjs # 스트럼 Source 스캔, 이미지 복사, manifest 생성
 scripts/buildRhythms.mjs       # rhythms.source.json → src/data/strumRhythms.ts 생성
 scripts/rhythms.source.json    # 리듬(스트로크) 전사 원본
-src/audio/                     # Web Audio 스트럼/메트로놈 엔진
-src/components/                # 앱 화면 컴포넌트
+src/app/                       # App 루트 (화면 전환)
+src/audio/                     # Web Audio 스트럼/메트로놈 엔진, voices/ 음색
+src/components/ui/             # 범용 UI 조각 (IconButton)
+src/features/gallery/          # 헤더·카테고리·갤러리·카드
+src/features/viewer/           # 악보 이미지 뷰어·재생선
+src/features/practice/         # 상세 화면·트랜스포트·재생 트랙
 src/data/                      # 타입, 카테고리, generated manifest, 리듬 데이터
 src/hooks/                     # 검색, 저장, 메트로놈, transport 훅
 src/lib/                       # 리듬 시간 계산, IndexedDB 확장 구조
 docs/spec/                     # 바이브코딩 명세 문서
 ```
+
+## 검증
+
+```bash
+npm run check   # typecheck + lint + format:check + test
+npm test        # Vitest (골든 타이밍 스냅샷, 리듬 스키마, 훅)
+```
+
+`src/audio/__golden__/timeline.golden.json`은 76개 패턴의 스트로크 예약 시각을 고정한 회귀 기준입니다. 의도적으로 바꿀 때만 `npx vitest run -u`로 갱신합니다.
 
 ## 이미지 추가법
 

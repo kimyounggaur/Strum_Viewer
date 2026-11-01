@@ -1,5 +1,5 @@
-import { strumCategories } from '../data/strumCategories';
-import type { StrumCategoryId } from '../data/strumTypes';
+import { strumCategories } from '../../data/strumCategories';
+import type { StrumCategoryId } from '../../data/strumTypes';
 import { CategoryCard } from './CategoryCard';
 
 type CategorySelectorProps = {

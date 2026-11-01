@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AudioEngine } from './audio/AudioEngine';
-import { AppHeader } from './components/AppHeader';
-import { CategorySelector } from './components/CategorySelector';
-import { EmptyState } from './components/EmptyState';
-import { FilterBar } from './components/FilterBar';
-import { PatternDetail } from './components/PatternDetail';
-import { PatternGallery } from './components/PatternGallery';
-import { strumCategories } from './data/strumCategories';
-import { getPatternById, strumPatterns } from './data/patterns';
-import type { SortMode, StrumCategoryId, StrumPattern, ViewMode } from './data/strumTypes';
-import { useFavorites } from './hooks/useFavorites';
-import { useFilteredPatterns } from './hooks/useFilteredPatterns';
-import { useRecentPatterns } from './hooks/useRecentPatterns';
+import { AudioEngine } from '../audio/AudioEngine';
+import { AppHeader } from '../features/gallery/AppHeader';
+import { CategorySelector } from '../features/gallery/CategorySelector';
+import { EmptyState } from '../features/gallery/EmptyState';
+import { FilterBar } from '../features/gallery/FilterBar';
+import { PatternDetail } from '../features/practice/PatternDetail';
+import { PatternGallery } from '../features/gallery/PatternGallery';
+import { strumCategories } from '../data/strumCategories';
+import { getPatternById, strumPatterns } from '../data/patterns';
+import type { SortMode, StrumCategoryId, StrumPattern, ViewMode } from '../data/strumTypes';
+import { useFavorites } from '../hooks/useFavorites';
+import { useFilteredPatterns } from '../hooks/useFilteredPatterns';
+import { useRecentPatterns } from '../hooks/useRecentPatterns';
 
 function App() {
   const [viewMode, setViewMode] = useState<ViewMode>('home');

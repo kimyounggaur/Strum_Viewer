@@ -1,7 +1,7 @@
 import { Heart, Play, Star } from 'lucide-react';
-import { categoryById } from '../data/strumCategories';
-import type { StrumPattern } from '../data/strumTypes';
-import { IconButton } from './IconButton';
+import { categoryById } from '../../data/strumCategories';
+import type { StrumPattern } from '../../data/strumTypes';
+import { IconButton } from '../../components/ui/IconButton';
 
 type PatternCardProps = {
   pattern: StrumPattern;

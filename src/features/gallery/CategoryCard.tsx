@@ -1,4 +1,4 @@
-import type { StrumCategory } from '../data/strumTypes';
+import type { StrumCategory } from '../../data/strumTypes';
 
 type CategoryCardProps = {
   category: StrumCategory;

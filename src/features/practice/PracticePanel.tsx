@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { StrumPattern } from '../data/strumTypes';
-import { useTransport } from '../hooks/useTransport';
+import type { StrumPattern } from '../../data/strumTypes';
+import { useTransport } from '../../hooks/useTransport';
 import { MetronomeControls } from './MetronomeControls';
 import { StrokeLegend } from './StrokeLegend';
 import { TransportBar } from './TransportBar';
