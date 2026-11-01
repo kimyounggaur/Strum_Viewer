@@ -18,9 +18,14 @@ export function CategoryChips({ selectedCategoryId, onSelect }: CategoryChipsPro
     const row = rowRef.current;
     const chip = activeRef.current;
     if (!row || !chip) return;
-    const left = chip.offsetLeft; // row가 relative라 offsetParent = row
-    if (left < row.scrollLeft || left + chip.offsetWidth > row.scrollLeft + row.clientWidth) {
-      row.scrollLeft = Math.max(0, left - 16);
+    // getBoundingClientRect: 글꼴에 따라 칩 폭이 소수점 px라 offsetLeft(정수)로는 어긋난다.
+    const rowRect = row.getBoundingClientRect();
+    const chipRect = chip.getBoundingClientRect();
+    const padding = 16;
+    if (chipRect.left < rowRect.left + padding) {
+      row.scrollLeft -= rowRect.left + padding - chipRect.left;
+    } else if (chipRect.right > rowRect.right - padding) {
+      row.scrollLeft += chipRect.right - (rowRect.right - padding);
     }
   }, [selectedCategoryId]);
 

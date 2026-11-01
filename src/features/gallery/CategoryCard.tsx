@@ -15,7 +15,7 @@ export function CategoryCard({ category, active, onSelect }: CategoryCardProps) 
       aria-pressed={active}
       onClick={() => onSelect(category.id)}
       className={[
-        'group min-h-44 rounded-lg border bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft',
+        'group relative min-h-44 overflow-hidden rounded-lg border bg-white p-5 text-left shadow-sm transition hover:shadow-soft motion-safe:hover:-translate-y-0.5',
         active ? 'border-transparent' : 'border-slate-200',
       ].join(' ')}
       style={
@@ -27,16 +27,19 @@ export function CategoryCard({ category, active, onSelect }: CategoryCardProps) 
           : undefined
       }
     >
+      <span
+        className="absolute inset-x-0 top-0 h-1.5"
+        style={{ backgroundColor: category.color }}
+        aria-hidden="true"
+      />
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="text-sm font-bold text-slate-500">{category.labelKo}</div>
           <div className="mt-1 text-2xl font-black text-slate-950">{category.shortLabel}</div>
         </div>
-        <span
-          className="rounded-lg px-3 py-1 text-sm font-black text-white shadow-sm"
-          style={{ backgroundColor: category.color }}
-        >
+        <span className="rounded-lg bg-slate-900 px-3 py-1 text-sm font-black text-white shadow-sm">
           {patternCountByCategory[category.id] ?? 0}
+          <span className="sr-only">개 패턴</span>
         </span>
       </div>
 
@@ -49,10 +52,12 @@ export function CategoryCard({ category, active, onSelect }: CategoryCardProps) 
         <span className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">
           {category.recommendedBpm.default} BPM
         </span>
-        <span
-          className="rounded-lg px-2.5 py-1 text-xs font-bold text-white"
-          style={{ backgroundColor: category.accentColor }}
-        >
+        <span className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">
+          <span
+            className="h-2 w-2 rounded-full"
+            style={{ backgroundColor: category.accentColor }}
+            aria-hidden="true"
+          />
           {countingFeelLabel[category.countingFeel]}
         </span>
       </div>

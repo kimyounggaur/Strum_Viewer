@@ -52,6 +52,7 @@ export function KaraokeTrack({ pattern }: KaraokeTrackProps) {
   const rhythm = pattern.rhythm;
   const snapshot = useTransportSnapshot();
   const playheadRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   usePlayheadFrame((position) => {
     const line = playheadRef.current;
@@ -61,6 +62,22 @@ export function KaraokeTrack({ pattern }: KaraokeTrackProps) {
       (position.status === 'playing' || position.status === 'paused');
     line.style.left = `${xAt(position.progress)}%`;
     line.style.opacity = visible ? '1' : '0';
+
+    // 좁은 화면에서 트랙이 가로로 넘치면 재생선을 따라간다.
+    const scroller = scrollRef.current;
+    if (visible && position.status === 'playing' && scroller) {
+      const overflow = scroller.scrollWidth - scroller.clientWidth;
+      if (overflow > 0) {
+        const x = (xAt(position.progress) / 100) * scroller.scrollWidth;
+        const viewLeft = scroller.scrollLeft;
+        if (
+          x < viewLeft + scroller.clientWidth * 0.15 ||
+          x > viewLeft + scroller.clientWidth * 0.7
+        ) {
+          scroller.scrollLeft = Math.min(overflow, Math.max(0, x - scroller.clientWidth * 0.3));
+        }
+      }
+    }
   });
 
   if (!rhythm) {
@@ -75,7 +92,7 @@ export function KaraokeTrack({ pattern }: KaraokeTrackProps) {
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-sm font-black text-slate-900">
+        <h2 className="text-sm font-black text-slate-900">
           재생 트랙 · 스트럼 모드
           {countIn ? (
             <span
@@ -85,7 +102,7 @@ export function KaraokeTrack({ pattern }: KaraokeTrackProps) {
               카운트 {countIn.beats - countIn.beat + 1}
             </span>
           ) : null}
-        </h3>
+        </h2>
         <div className="flex items-center gap-3 text-xs font-bold">
           <span className="inline-flex items-center gap-1 text-slate-500">
             <span className="h-2.5 w-2.5 rounded-full bg-slate-300" aria-hidden="true" />
@@ -102,7 +119,12 @@ export function KaraokeTrack({ pattern }: KaraokeTrackProps) {
         </div>
       </div>
 
-      <TrackBody pattern={pattern} activeStrokeIndex={active} playheadRef={playheadRef} />
+      <TrackBody
+        pattern={pattern}
+        activeStrokeIndex={active}
+        playheadRef={playheadRef}
+        scrollRef={scrollRef}
+      />
     </div>
   );
 }
@@ -111,12 +133,14 @@ type TrackBodyProps = {
   pattern: StrumPattern;
   activeStrokeIndex: number;
   playheadRef: React.RefObject<HTMLDivElement | null>;
+  scrollRef: React.RefObject<HTMLDivElement | null>;
 };
 
 const TrackBody = memo(function TrackBody({
   pattern,
   activeStrokeIndex,
   playheadRef,
+  scrollRef,
 }: TrackBodyProps) {
   const rhythm = pattern.rhythm!;
   const cells = cellsInLoop(rhythm);
@@ -124,8 +148,17 @@ const TrackBody = memo(function TrackBody({
   const cellsPerBar = rhythm.beatsPerBar * rhythm.subdivision;
 
   return (
-    <div className="strum-scrollbar overflow-x-auto pb-1">
-      <div className="relative h-28 w-full" style={{ minWidth: `${cells * 54}px` }}>
+    <div
+      ref={scrollRef}
+      tabIndex={0}
+      role="region"
+      aria-label="재생 트랙 (좁은 화면에서는 가로로 스크롤)"
+      className="strum-scrollbar overflow-x-auto pb-1 outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
+    >
+      <div
+        className="relative h-28 w-full min-w-[calc(var(--cells)*40px)] sm:min-w-[calc(var(--cells)*54px)]"
+        style={{ '--cells': cells } as React.CSSProperties}
+      >
         <div className="absolute inset-x-0 top-[38%] h-px bg-slate-100" aria-hidden="true" />
 
         {/* 마디 경계선 (2마디 이상) */}
@@ -181,13 +214,13 @@ const TrackBody = memo(function TrackBody({
                 aria-current={state === 'active' ? 'true' : undefined}
                 title={stroke.tie ? '붙임줄: 앞 소리를 이어서 끌기(치지 않음)' : undefined}
                 className={[
-                  'absolute top-[12%] flex h-11 w-11 -translate-x-1/2 items-center justify-center rounded-xl border-2 transition-[transform,background-color,border-color,color] duration-100 ease-out motion-reduce:transition-none',
+                  'absolute top-[12%] flex h-9 w-9 -translate-x-1/2 sm:h-11 sm:w-11 items-center justify-center rounded-xl border-2 transition-[transform,background-color,border-color,color] duration-100 ease-out motion-reduce:transition-none',
                   chipClass[state],
                   stroke.tie ? 'border-dashed opacity-60' : '',
                 ].join(' ')}
                 style={{ left: `${xAt((stroke.step + 0.5) / cells)}%` }}
               >
-                <Icon className="h-6 w-6" aria-hidden="true" />
+                <Icon className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
                 {stroke.tie ? (
                   <span
                     className="absolute -bottom-2 left-1/2 -translate-x-1/2 text-sm font-black leading-none"

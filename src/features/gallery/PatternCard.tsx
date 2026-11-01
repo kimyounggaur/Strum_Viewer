@@ -1,5 +1,5 @@
 import { Heart, Play, Square, Star } from 'lucide-react';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { countingFeelLabel, difficultyLabel } from '../../data/labels';
 import { categoryById } from '../../data/strumCategories';
 import type { StrumPattern } from '../../data/strumTypes';
@@ -12,29 +12,34 @@ type PatternCardProps = {
   onOpen: (patternId: string) => void;
   onPreview?: (pattern: StrumPattern) => void;
   isPreviewing?: boolean;
+  /** 카드 제목 수준 (목록 h1 아래 = 2, 홈 섹션 h2 아래 = 3) */
+  headingLevel?: 2 | 3;
 };
 
-export function PatternCard({
+export const PatternCard = memo(function PatternCard({
   pattern,
   isFavorite,
   onToggleFavorite,
   onOpen,
   onPreview,
   isPreviewing = false,
+  headingLevel = 2,
 }: PatternCardProps) {
+  const Heading = headingLevel === 3 ? 'h3' : 'h2';
   const category = categoryById[pattern.categoryId];
   const [loaded, setLoaded] = useState(false);
 
   return (
     <article
       className={[
-        'overflow-hidden rounded-lg border bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft',
+        'overflow-hidden rounded-lg border bg-white shadow-sm transition hover:shadow-soft motion-safe:hover:-translate-y-0.5',
         isPreviewing ? 'border-teal-500 ring-2 ring-teal-200' : 'border-slate-200',
       ].join(' ')}
     >
       <button
         type="button"
         onClick={() => onOpen(pattern.id)}
+        data-open-pattern={pattern.id}
         className="block w-full bg-white p-3 text-left"
         aria-label={`${pattern.title} 상세 보기`}
       >
@@ -81,7 +86,9 @@ export function PatternCard({
                 {category.shortLabel}
               </span>
             </div>
-            <h2 className="mt-1 text-lg font-black text-slate-950">{pattern.displayNo}</h2>
+            <Heading className="mt-1 text-lg font-black text-slate-950">
+              {pattern.displayNo}
+            </Heading>
           </div>
 
           <div className="flex gap-2">
@@ -132,4 +139,4 @@ export function PatternCard({
       </div>
     </article>
   );
-}
+});

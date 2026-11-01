@@ -1,5 +1,6 @@
 import { AlertTriangle, ArrowLeft, ArrowRight, ChevronLeft, Heart, Info } from 'lucide-react';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+import { getLastNavigationType } from '../../app/useHashRoute';
 import { countingFeelLabel, difficultyLabel } from '../../data/labels';
 import { categoryById } from '../../data/strumCategories';
 import type { StrumPattern } from '../../data/strumTypes';
@@ -32,6 +33,14 @@ export function PatternDetail({
   // (재마운트하지 않으므로 뷰어의 전체화면·확대 상태가 유지된다)
   const transport = useTransport(pattern);
   const { toggle } = transport;
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+
+  // 목록에서 들어왔으면 제목으로 포커스를 옮겨 스크린리더가 새 화면을 읽게 한다.
+  useEffect(() => {
+    if (getLastNavigationType() === 'push') {
+      titleRef.current?.focus({ preventScroll: true });
+    }
+  }, []);
 
   const goPrevious = useCallback(() => {
     if (neighbors.previous) {
@@ -86,10 +95,12 @@ export function PatternDetail({
           </IconButton>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <span
-                className="rounded-lg px-2.5 py-1 text-xs font-black text-white"
-                style={{ backgroundColor: category.color }}
-              >
+              <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-black text-slate-800">
+                <span
+                  className="h-2.5 w-2.5 rounded-full"
+                  style={{ backgroundColor: category.color }}
+                  aria-hidden="true"
+                />
                 {category.shortLabel}
               </span>
               {category.shortLabel !== pattern.timeSignature ? (
@@ -114,7 +125,13 @@ export function PatternDetail({
                 </span>
               ) : null}
             </div>
-            <h1 className="mt-2 text-2xl font-black text-slate-950">{pattern.titleKo}</h1>
+            <h1
+              ref={titleRef}
+              tabIndex={-1}
+              className="mt-2 text-2xl font-black text-slate-950 outline-none"
+            >
+              {pattern.titleKo}
+            </h1>
             <p className="mt-1 text-sm text-slate-500">{pattern.title}</p>
           </div>
         </div>
@@ -159,7 +176,7 @@ export function PatternDetail({
         <aside className="space-y-4 xl:sticky xl:top-24 xl:self-start">
           <PracticePanel pattern={pattern} transport={transport} />
           <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
-            <div className="font-black text-slate-900">연습 정보</div>
+            <h2 className="font-black text-slate-900">연습 정보</h2>
             <dl className="mt-3 grid grid-cols-2 gap-2">
               <dt className="text-slate-500">추천 BPM</dt>
               <dd className="font-bold text-slate-800">{pattern.recommendedBpm.default}</dd>

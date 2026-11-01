@@ -12,7 +12,7 @@ export function StrokeLegend({ pattern }: StrokeLegendProps) {
 
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <h3 className="text-sm font-black text-slate-900">스트로크 범례</h3>
+      <h2 className="text-sm font-black text-slate-900">스트로크 범례</h2>
       <div className="mt-3 grid grid-cols-2 gap-2 text-sm text-slate-600">
         <span className="inline-flex items-center gap-2">
           <ArrowDown className="h-4 w-4 text-teal-600" aria-hidden="true" />

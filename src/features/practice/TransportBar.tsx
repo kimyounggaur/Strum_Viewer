@@ -36,7 +36,7 @@ export function TransportBar({ pattern, transport }: TransportBarProps) {
     <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <h3 className="text-sm font-black text-slate-900">스트럼 재생</h3>
+          <h2 className="text-sm font-black text-slate-900">스트럼 재생</h2>
           <p className="mt-1 text-xs font-semibold text-slate-500">
             {loopInfo}
             {status === 'counting-in' ? ' · 카운트 중' : status === 'paused' ? ' · 일시정지' : ''}

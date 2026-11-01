@@ -1,4 +1,5 @@
 import { Search, X } from 'lucide-react';
+import { Logo } from '../../components/brand/Logo';
 
 type AppHeaderProps = {
   searchTerm: string;
@@ -14,11 +15,9 @@ export function AppHeader({ searchTerm, onSearchTermChange, onHome }: AppHeaderP
           type="button"
           onClick={onHome}
           className="flex min-w-fit items-center gap-3 text-left"
-          aria-label="홈으로 이동"
+          aria-label="Lesson Designer Strum Viewer 홈으로"
         >
-          <span className="grid h-11 w-11 place-items-center rounded-lg bg-rose-100 text-lg font-black text-rose-500 shadow-sm">
-            LD
-          </span>
+          <Logo className="h-11 w-11 shrink-0" />
           <span>
             <span className="block text-sm font-semibold text-slate-500">Lesson Designer</span>
             <span className="block text-xl font-black tracking-normal text-ink">Strum Viewer</span>

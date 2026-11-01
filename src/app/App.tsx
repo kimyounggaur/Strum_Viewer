@@ -1,5 +1,5 @@
 import { Search, X } from 'lucide-react';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { getPatternById, strumPatterns } from '../data/patterns';
 import { categoryById } from '../data/strumCategories';
 import type { SortMode, StrumCategoryId, StrumPattern } from '../data/strumTypes';
@@ -15,7 +15,7 @@ import { useFilteredPatterns } from '../hooks/useFilteredPatterns';
 import { usePreview } from '../hooks/usePreview';
 import { useRecentPatterns } from '../hooks/useRecentPatterns';
 import { routeKey } from './routes';
-import { useHashRoute } from './useHashRoute';
+import { getLastNavigationType, useHashRoute } from './useHashRoute';
 import { useScrollRestoration } from './useScrollRestoration';
 
 const APP_NAME = 'Strum Viewer';
@@ -38,7 +38,19 @@ function App() {
   const listCategoryId: StrumCategoryId | 'all' =
     route.name === 'category' ? route.categoryId : 'all';
 
-  useScrollRestoration(routeKey(route));
+  const screenKey = routeKey(route);
+  useScrollRestoration(screenKey);
+
+  // 상세에서 뒤로 돌아오면 열었던 카드로 포커스를 돌려준다(키보드·스크린리더 사용자).
+  const lastOpenedRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (route.name === 'pattern' || getLastNavigationType() !== 'pop') return;
+    const id = lastOpenedRef.current;
+    if (!id) return;
+    document
+      .querySelector<HTMLElement>(`[data-open-pattern="${CSS.escape(id)}"]`)
+      ?.focus({ preventScroll: true });
+  }, [route.name, screenKey]);
 
   // 상세에 들어오면(링크로 바로 들어온 경우 포함) 최근 본 패턴에 기록, 미리듣기는 정지
   const patternId = selectedPattern?.id;
@@ -98,13 +110,19 @@ function App() {
   );
 
   const openPattern = useCallback(
-    (id: string) => navigate({ name: 'pattern', patternId: id }),
+    (id: string) => {
+      lastOpenedRef.current = id;
+      navigate({ name: 'pattern', patternId: id });
+    },
     [navigate],
   );
 
   // 상세에서 이전/다음은 기록을 쌓지 않는다(뒤로가기 한 번에 목록으로)
   const openNeighbor = useCallback(
-    (id: string) => navigate({ name: 'pattern', patternId: id }, {}, { replace: true }),
+    (id: string) => {
+      lastOpenedRef.current = id;
+      navigate({ name: 'pattern', patternId: id }, {}, { replace: true });
+    },
     [navigate],
   );
 
@@ -175,7 +193,7 @@ function App() {
                 onSortModeChange={(sort) => setQuery({ sort })}
                 resultCount={filteredPatterns.length}
               />
-              <PatternGallery patterns={filteredPatterns} {...galleryProps} />
+              <PatternGallery patterns={filteredPatterns} headingLevel={3} {...galleryProps} />
             </section>
           </>
         ) : (
@@ -215,6 +233,7 @@ function App() {
               {filteredPatterns.length === 0 && searchTerm ? (
                 <div className="space-y-3">
                   <EmptyState
+                    headingLevel={2}
                     title={`‘${searchTerm}’에 맞는 패턴이 없습니다`}
                     description="Ex 번호(ex03), 박자(3/4), 느낌(셋잇단·스윙), 카테고리 이름으로 찾아보세요."
                   />
@@ -264,7 +283,7 @@ function HomeSections({
           최근 본 패턴
         </h2>
         {recentPatterns.length > 0 ? (
-          <PatternGallery patterns={recentPatterns} {...galleryProps} />
+          <PatternGallery patterns={recentPatterns} headingLevel={3} {...galleryProps} />
         ) : (
           <EmptyState
             title="아직 최근 본 패턴이 없습니다"
@@ -289,7 +308,7 @@ function HomeSections({
           ) : null}
         </div>
         {favoritePatterns.length > 0 ? (
-          <PatternGallery patterns={favoritePatterns} {...galleryProps} />
+          <PatternGallery patterns={favoritePatterns} headingLevel={3} {...galleryProps} />
         ) : (
           <EmptyState
             title="즐겨찾기를 추가해 보세요"
