@@ -62,8 +62,35 @@ describe('useFilteredPatterns — 필터', () => {
     expect(run({ searchTerm: '슬로우 락' })).toHaveLength(12);
   });
 
-  it('현재 동작의 결함: "1"은 원본 파일명 때문에 거의 전부 매칭된다 (Phase 4에서 수정)', () => {
-    expect(run({ searchTerm: '1' }).length).toBeGreaterThan(60);
+  it('숫자 하나는 Ex 번호로만 찾는다(옛 결함: 파일명 때문에 76개 중 60개 이상 매칭)', () => {
+    const result = run({ searchTerm: '1' });
+    expect(result).toHaveLength(9);
+    expect(result.every((pattern) => pattern.exerciseNo === 1)).toBe(true);
+  });
+
+  it.each(['ex3', 'ex03', 'Ex-3', '3번'])('Ex 번호 표기 %s', (term) => {
+    const result = run({ searchTerm: term });
+    expect(result.length).toBeGreaterThan(0);
+    expect(result.every((pattern) => pattern.exerciseNo === 3)).toBe(true);
+  });
+
+  it('여러 토큰은 AND: "셔플 ex02"', () => {
+    expect(run({ searchTerm: '셔플 ex02' }).map((pattern) => pattern.id)).toEqual(['shuffle_ex02']);
+  });
+
+  it('세는 느낌 라벨로 찾기: "셋잇단"', () => {
+    const result = run({ searchTerm: '셋잇단' });
+    expect(result.every((pattern) => pattern.countingFeel === 'triplet')).toBe(true);
+    expect(result.map((pattern) => pattern.id)).toContain('three-four_ex10');
+  });
+
+  it('원본 파일명의 공통 문자열로는 찾지 않는다', () => {
+    expect(run({ searchTerm: 'POD' })).toHaveLength(0);
+    expect(run({ searchTerm: 'remake' })).toHaveLength(0);
+  });
+
+  it('단어 시작만 매칭 (부분 문자열 아님)', () => {
+    expect(run({ searchTerm: 'huffle' })).toHaveLength(0);
   });
 });
 

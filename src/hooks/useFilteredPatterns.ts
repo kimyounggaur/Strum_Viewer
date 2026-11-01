@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { countingFeelLabel, difficultyRank } from '../data/labels';
+import { difficultyRank } from '../data/labels';
+import { matchesQuery, tokenize } from '../lib/search';
 import { categoryById } from '../data/strumCategories';
 import type { SortMode, StrumCategoryId, StrumPattern } from '../data/strumTypes';
 
@@ -21,35 +22,14 @@ export function useFilteredPatterns({
   recentPatterns,
 }: FilterArgs): StrumPattern[] {
   return useMemo(() => {
-    const query = searchTerm.trim().toLowerCase();
+    const tokens = tokenize(searchTerm);
     const recentRank = new Map(recentPatterns.map((id, index) => [id, index]));
 
     const filtered = patterns.filter((pattern) => {
       if (categoryId !== 'all' && pattern.categoryId !== categoryId) {
         return false;
       }
-
-      if (!query) {
-        return true;
-      }
-
-      const category = categoryById[pattern.categoryId];
-      const searchable = [
-        pattern.title,
-        pattern.titleKo,
-        pattern.displayNo,
-        pattern.timeSignature,
-        countingFeelLabel[pattern.countingFeel],
-        pattern.originalFileName,
-        category.labelKo,
-        category.labelEn,
-        category.shortLabel,
-        ...pattern.tags,
-      ]
-        .join(' ')
-        .toLowerCase();
-
-      return searchable.includes(query);
+      return matchesQuery(pattern, categoryById[pattern.categoryId], tokens);
     });
 
     return [...filtered].sort((a, b) => {

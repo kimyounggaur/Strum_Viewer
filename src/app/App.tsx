@@ -1,34 +1,70 @@
-import { useCallback, useMemo, useState } from 'react';
+import { Search, X } from 'lucide-react';
+import { useCallback, useEffect, useMemo } from 'react';
+import { getPatternById, strumPatterns } from '../data/patterns';
+import { categoryById } from '../data/strumCategories';
+import type { SortMode, StrumCategoryId, StrumPattern } from '../data/strumTypes';
 import { AppHeader } from '../features/gallery/AppHeader';
+import { CategoryChips } from '../features/gallery/CategoryChips';
 import { CategorySelector } from '../features/gallery/CategorySelector';
 import { EmptyState } from '../features/gallery/EmptyState';
 import { FilterBar } from '../features/gallery/FilterBar';
-import { PatternDetail } from '../features/practice/PatternDetail';
 import { PatternGallery } from '../features/gallery/PatternGallery';
-import { strumCategories } from '../data/strumCategories';
-import { getPatternById, strumPatterns } from '../data/patterns';
-import type { SortMode, StrumCategoryId, StrumPattern, ViewMode } from '../data/strumTypes';
+import { PatternDetail } from '../features/practice/PatternDetail';
 import { useFavorites } from '../hooks/useFavorites';
 import { useFilteredPatterns } from '../hooks/useFilteredPatterns';
 import { usePreview } from '../hooks/usePreview';
 import { useRecentPatterns } from '../hooks/useRecentPatterns';
+import { routeKey } from './routes';
+import { useHashRoute } from './useHashRoute';
+import { useScrollRestoration } from './useScrollRestoration';
 
+const APP_NAME = 'Strum Viewer';
+const HOME_SECTION_LIMIT = 8;
+
+/**
+ * 화면 상태는 모두 URL(해시)에서 유도한다 → 새로고침·뒤로가기·링크 공유가 동작한다.
+ *   #/                 홈       #/c/<id|all>   카테고리      #/p/<patternId>   상세
+ *   ?q=검색어&sort=정렬
+ */
 function App() {
-  const [viewMode, setViewMode] = useState<ViewMode>('home');
-  const [selectedCategoryId, setSelectedCategoryId] = useState<StrumCategoryId | 'all'>('all');
-  const [selectedPatternId, setSelectedPatternId] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortMode, setSortMode] = useState<SortMode>('exercise');
-  const { favoriteSet, isFavorite, toggleFavorite } = useFavorites();
+  const { route, query, navigate, setQuery, back } = useHashRoute();
+  const { favorites, favoriteSet, isFavorite, toggleFavorite } = useFavorites();
   const { recentPatterns, rememberPattern } = useRecentPatterns();
-  const { previewingId, toggle: togglePreview } = usePreview();
+  const { previewingId, toggle: togglePreview, stop: stopPreview } = usePreview();
 
-  const selectedPattern = getPatternById(selectedPatternId);
-  const activeCategoryId = viewMode === 'home' && searchTerm ? 'all' : selectedCategoryId;
+  const searchTerm = query.q ?? '';
+  const sortMode: SortMode = query.sort ?? 'exercise';
+  const selectedPattern = route.name === 'pattern' ? getPatternById(route.patternId) : undefined;
+  const listCategoryId: StrumCategoryId | 'all' =
+    route.name === 'category' ? route.categoryId : 'all';
+
+  useScrollRestoration(routeKey(route));
+
+  // 상세에 들어오면(링크로 바로 들어온 경우 포함) 최근 본 패턴에 기록, 미리듣기는 정지
+  const patternId = selectedPattern?.id;
+  useEffect(() => {
+    if (!patternId) return;
+    rememberPattern(patternId);
+    stopPreview();
+  }, [patternId, rememberPattern, stopPreview]);
+
+  // 문서 제목
+  useEffect(() => {
+    if (selectedPattern) {
+      document.title = `${selectedPattern.titleKo} · ${APP_NAME}`;
+    } else if (route.name === 'category') {
+      const label =
+        route.categoryId === 'all' ? '전체 패턴' : categoryById[route.categoryId].labelKo;
+      document.title = `${label} · ${APP_NAME}`;
+    } else {
+      document.title = `Lesson Designer ${APP_NAME}`;
+    }
+  }, [route, selectedPattern]);
+
   const filteredPatterns = useFilteredPatterns({
     patterns: strumPatterns,
     searchTerm,
-    categoryId: activeCategoryId,
+    categoryId: listCategoryId,
     sortMode,
     favorites: favoriteSet,
     recentPatterns,
@@ -37,39 +73,51 @@ function App() {
   const recentPatternItems = useMemo(
     () =>
       recentPatterns
-        .map((patternId) => getPatternById(patternId))
+        .map((id) => getPatternById(id))
         .filter((pattern): pattern is StrumPattern => Boolean(pattern))
-        .slice(0, 8),
+        .slice(0, HOME_SECTION_LIMIT),
     [recentPatterns],
   );
 
+  // 즐겨찾기는 추가한 순서(최근 추가가 앞)
   const favoritePatternItems = useMemo(
-    () => strumPatterns.filter((pattern) => favoriteSet.has(pattern.id)).slice(0, 8),
-    [favoriteSet],
+    () =>
+      favorites
+        .map((id) => getPatternById(id))
+        .filter((pattern): pattern is StrumPattern => Boolean(pattern)),
+    [favorites],
   );
 
-  const openHome = useCallback(() => {
-    setViewMode('home');
-    setSelectedCategoryId('all');
-    setSelectedPatternId(null);
-  }, []);
+  const openHome = useCallback(() => navigate({ name: 'home' }), [navigate]);
 
-  const openCategory = useCallback((categoryId: StrumCategoryId) => {
-    setSelectedCategoryId(categoryId);
-    setSelectedPatternId(null);
-    setViewMode('category');
-  }, []);
+  // 카테고리를 고르면 검색어는 비운다(정렬은 유지)
+  const openCategory = useCallback(
+    (categoryId: StrumCategoryId | 'all') =>
+      navigate({ name: 'category', categoryId }, { sort: query.sort }),
+    [navigate, query.sort],
+  );
 
   const openPattern = useCallback(
-    (patternId: string) => {
-      const pattern = getPatternById(patternId);
-      if (!pattern) return;
-      setSelectedCategoryId(pattern.categoryId);
-      setSelectedPatternId(patternId);
-      rememberPattern(patternId);
-      setViewMode('detail');
+    (id: string) => navigate({ name: 'pattern', patternId: id }),
+    [navigate],
+  );
+
+  // 상세에서 이전/다음은 기록을 쌓지 않는다(뒤로가기 한 번에 목록으로)
+  const openNeighbor = useCallback(
+    (id: string) => navigate({ name: 'pattern', patternId: id }, {}, { replace: true }),
+    [navigate],
+  );
+
+  const handleSearchChange = useCallback(
+    (value: string) => {
+      if (route.name === 'pattern') {
+        // 상세에서 검색을 시작하면 전체 검색 결과로 이동
+        navigate({ name: 'category', categoryId: 'all' }, { q: value });
+      } else {
+        setQuery({ q: value });
+      }
     },
-    [rememberPattern],
+    [navigate, route.name, setQuery],
   );
 
   const previewPattern = useCallback(
@@ -79,69 +127,109 @@ function App() {
     [togglePreview],
   );
 
-  const categoryTitle = useMemo(() => {
-    if (selectedCategoryId === 'all') return '전체 패턴';
-    return (
-      strumCategories.find((category) => category.id === selectedCategoryId)?.labelKo ?? '패턴'
-    );
-  }, [selectedCategoryId]);
+  const galleryProps = {
+    favorites: favoriteSet,
+    onToggleFavorite: toggleFavorite,
+    onOpen: openPattern,
+    onPreview: previewPattern,
+    previewingId,
+  };
+
+  const scopeLabel = listCategoryId === 'all' ? '전체' : categoryById[listCategoryId].labelKo;
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <AppHeader searchTerm={searchTerm} onSearchTermChange={setSearchTerm} onHome={openHome} />
+      <AppHeader
+        searchTerm={searchTerm}
+        onSearchTermChange={handleSearchChange}
+        onHome={openHome}
+      />
 
       <main className="mx-auto w-full max-w-7xl space-y-6 px-4 py-6 sm:px-6 lg:py-8">
-        {viewMode === 'detail' && selectedPattern ? (
+        {selectedPattern ? (
           <PatternDetail
             pattern={selectedPattern}
             isFavorite={isFavorite(selectedPattern.id)}
             onToggleFavorite={toggleFavorite}
-            onBack={() => setViewMode('category')}
-            onOpenPattern={openPattern}
+            onBack={() => back({ name: 'category', categoryId: selectedPattern.categoryId })}
+            onOpenPattern={openNeighbor}
           />
+        ) : route.name === 'home' && !searchTerm ? (
+          <>
+            <CategorySelector selectedCategoryId="all" onSelect={openCategory} />
+            <HomeSections
+              recentPatterns={recentPatternItems}
+              favoritePatterns={favoritePatternItems.slice(0, HOME_SECTION_LIMIT)}
+              favoriteTotal={favoritePatternItems.length}
+              onShowAllFavorites={() =>
+                navigate({ name: 'category', categoryId: 'all' }, { sort: 'favorites' })
+              }
+              {...galleryProps}
+            />
+            <section className="space-y-4" aria-labelledby="all-heading">
+              <h2 id="all-heading" className="text-xl font-black text-slate-950 sm:text-2xl">
+                전체 패턴
+              </h2>
+              <FilterBar
+                sortMode={sortMode}
+                onSortModeChange={(sort) => setQuery({ sort })}
+                resultCount={filteredPatterns.length}
+              />
+              <PatternGallery patterns={filteredPatterns} {...galleryProps} />
+            </section>
+          </>
         ) : (
           <>
-            <CategorySelector selectedCategoryId={selectedCategoryId} onSelect={openCategory} />
-
-            {viewMode === 'home' && !searchTerm ? (
-              <HomeSections
-                recentPatterns={recentPatternItems}
-                favoritePatterns={favoritePatternItems}
-                favoriteSet={favoriteSet}
-                onOpen={openPattern}
-                onToggleFavorite={toggleFavorite}
-                onPreview={previewPattern}
-                previewingId={previewingId}
-              />
-            ) : null}
+            <CategoryChips selectedCategoryId={listCategoryId} onSelect={openCategory} />
 
             <section className="space-y-4" aria-labelledby="gallery-heading">
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <h2
-                    id="gallery-heading"
-                    className="text-xl font-black text-slate-950 sm:text-2xl"
-                  >
-                    {searchTerm ? '검색 결과' : categoryTitle}
-                  </h2>
+              <div>
+                <h1 id="gallery-heading" className="text-xl font-black text-slate-950 sm:text-2xl">
+                  {searchTerm
+                    ? `${scopeLabel} · ‘${searchTerm}’ 검색 결과`
+                    : listCategoryId === 'all'
+                      ? '전체 패턴'
+                      : categoryById[listCategoryId].labelKo}
+                </h1>
+                {!searchTerm && listCategoryId !== 'all' ? (
                   <p className="mt-1 text-sm text-slate-500">
-                    원본 PNG 비율을 유지한 갤러리입니다.
+                    {categoryById[listCategoryId].description}
                   </p>
-                </div>
+                ) : null}
+                {searchTerm && listCategoryId !== 'all' ? (
+                  <button
+                    type="button"
+                    onClick={() => navigate({ name: 'category', categoryId: 'all' }, query)}
+                    className="mt-2 inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold text-slate-700 hover:border-slate-300"
+                  >
+                    <Search className="h-3.5 w-3.5" aria-hidden="true" />
+                    전체 카테고리에서 찾기
+                  </button>
+                ) : null}
               </div>
               <FilterBar
                 sortMode={sortMode}
-                onSortModeChange={setSortMode}
+                onSortModeChange={(sort) => setQuery({ sort })}
                 resultCount={filteredPatterns.length}
               />
-              <PatternGallery
-                patterns={filteredPatterns}
-                favorites={favoriteSet}
-                onToggleFavorite={toggleFavorite}
-                onOpen={openPattern}
-                onPreview={previewPattern}
-                previewingId={previewingId}
-              />
+              {filteredPatterns.length === 0 && searchTerm ? (
+                <div className="space-y-3">
+                  <EmptyState
+                    title={`‘${searchTerm}’에 맞는 패턴이 없습니다`}
+                    description="Ex 번호(ex03), 박자(3/4), 느낌(셋잇단·스윙), 카테고리 이름으로 찾아보세요."
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setQuery({ q: '' })}
+                    className="inline-flex items-center gap-1.5 text-sm font-bold text-teal-700"
+                  >
+                    <X className="h-4 w-4" aria-hidden="true" />
+                    검색어 지우기
+                  </button>
+                </div>
+              ) : (
+                <PatternGallery patterns={filteredPatterns} {...galleryProps} />
+              )}
             </section>
           </>
         )}
@@ -153,7 +241,9 @@ function App() {
 type HomeSectionsProps = {
   recentPatterns: StrumPattern[];
   favoritePatterns: StrumPattern[];
-  favoriteSet: Set<string>;
+  favoriteTotal: number;
+  onShowAllFavorites: () => void;
+  favorites: Set<string>;
   onOpen: (patternId: string) => void;
   onToggleFavorite: (patternId: string) => void;
   onPreview: (pattern: StrumPattern) => void;
@@ -163,27 +253,18 @@ type HomeSectionsProps = {
 function HomeSections({
   recentPatterns,
   favoritePatterns,
-  favoriteSet,
-  onOpen,
-  onToggleFavorite,
-  onPreview,
-  previewingId,
+  favoriteTotal,
+  onShowAllFavorites,
+  ...galleryProps
 }: HomeSectionsProps) {
   return (
     <div className="grid gap-4 xl:grid-cols-2">
-      <section className="space-y-3" aria-labelledby="recent-heading">
+      <section className="min-w-0 space-y-3" aria-labelledby="recent-heading">
         <h2 id="recent-heading" className="text-xl font-black text-slate-950">
           최근 본 패턴
         </h2>
         {recentPatterns.length > 0 ? (
-          <PatternGallery
-            patterns={recentPatterns}
-            favorites={favoriteSet}
-            onToggleFavorite={onToggleFavorite}
-            onOpen={onOpen}
-            onPreview={onPreview}
-            previewingId={previewingId}
-          />
+          <PatternGallery patterns={recentPatterns} {...galleryProps} />
         ) : (
           <EmptyState
             title="아직 최근 본 패턴이 없습니다"
@@ -192,19 +273,23 @@ function HomeSections({
         )}
       </section>
 
-      <section className="space-y-3" aria-labelledby="favorite-heading">
-        <h2 id="favorite-heading" className="text-xl font-black text-slate-950">
-          즐겨찾기
-        </h2>
+      <section className="min-w-0 space-y-3" aria-labelledby="favorite-heading">
+        <div className="flex items-baseline justify-between gap-3">
+          <h2 id="favorite-heading" className="text-xl font-black text-slate-950">
+            즐겨찾기
+          </h2>
+          {favoriteTotal > favoritePatterns.length ? (
+            <button
+              type="button"
+              onClick={onShowAllFavorites}
+              className="text-sm font-bold text-teal-700 hover:underline"
+            >
+              전체 보기 ({favoriteTotal})
+            </button>
+          ) : null}
+        </div>
         {favoritePatterns.length > 0 ? (
-          <PatternGallery
-            patterns={favoritePatterns}
-            favorites={favoriteSet}
-            onToggleFavorite={onToggleFavorite}
-            onOpen={onOpen}
-            onPreview={onPreview}
-            previewingId={previewingId}
-          />
+          <PatternGallery patterns={favoritePatterns} {...galleryProps} />
         ) : (
           <EmptyState
             title="즐겨찾기를 추가해 보세요"
