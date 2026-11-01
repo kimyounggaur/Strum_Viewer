@@ -67,24 +67,32 @@ function saveOptions(options: EngineOptions) {
 }
 
 /**
- * 상세 화면의 재생 제어. 이 훅을 쓰는 컴포넌트는 `key={pattern.id}`로 마운트되어야 한다
- * (패턴이 바뀌면 상태가 새로 시작되고, 언마운트 시 재생이 정지된다).
+ * 상세 화면의 재생 제어.
+ * 패턴이 바뀌면 이전 재생을 정지하고 새 패턴을 엔진에 올리며, BPM은 새 패턴의 추천값으로 돌아간다.
+ * 언마운트(목록으로 돌아감) 시에도 정지한다.
  */
 export function useTransport(pattern: StrumPattern): Transport {
   const snapshot = useTransportSnapshot();
-  const [bpm, setBpmState] = useState(() => clampBpm(pattern.recommendedBpm.default));
+  // BPM은 "어느 패턴의 값인지"와 함께 저장한다. 패턴이 바뀌면 렌더 중에 추천값으로 유도되므로
+  // effect에서 setState로 리셋할 필요가 없다.
+  const [bpmState, setBpmState] = useState(() => ({
+    patternId: pattern.id,
+    bpm: clampBpm(pattern.recommendedBpm.default),
+  }));
+  const bpm =
+    bpmState.patternId === pattern.id ? bpmState.bpm : clampBpm(pattern.recommendedBpm.default);
   const [options, setOptionsState] = useState<EngineOptions>(loadOptions);
 
-  // 마운트: 이 패턴을 엔진에 올린다. 언마운트(뒤로/다른 패턴): 정지.
+  // 패턴 진입: 엔진에 올린다. 패턴 변경·언마운트: 이 패턴의 재생을 정지.
   useEffect(() => {
-    engine.load(pattern, bpm);
+    engine.load(pattern, clampBpm(pattern.recommendedBpm.default));
     engine.setOptions(options);
     return () => {
       if (engine.patternId === pattern.id) {
         engine.stop();
       }
     };
-    // 마운트 시점 값만 쓴다. 이후 bpm·options 변경은 setter가 엔진에 직접 반영한다.
+    // options는 진입 시점 값만 쓴다. 이후 변경은 setOptions가 엔진에 직접 반영한다.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pattern]);
 
@@ -128,7 +136,7 @@ export function useTransport(pattern: StrumPattern): Transport {
     (next: number) => {
       if (!Number.isFinite(next)) return;
       const clamped = clampBpm(next);
-      setBpmState(clamped);
+      setBpmState({ patternId: pattern.id, bpm: clamped });
       if (engine.patternId === pattern.id) {
         engine.setBpm(clamped);
       }

@@ -26,7 +26,8 @@ export function PatternDetail({
 }: PatternDetailProps) {
   const category = categoryById[pattern.categoryId];
   const neighbors = getNeighborPatterns(pattern);
-  // 이 컴포넌트는 App에서 key={pattern.id}로 마운트된다 → 패턴이 바뀌면 재생 상태가 새로 시작된다.
+  // 패턴이 바뀌면 useTransport가 이전 재생을 멈추고 새 패턴을 엔진에 올린다.
+  // (재마운트하지 않으므로 뷰어의 전체화면·확대 상태가 유지된다)
   const transport = useTransport(pattern);
   const { toggle } = transport;
 
@@ -56,7 +57,7 @@ export function PatternDetail({
         return;
       }
       // 전체화면 중의 ESC·화살표는 브라우저/뷰어 몫
-      if (document.fullscreenElement) return;
+      if (document.fullscreenElement || document.documentElement.dataset.viewerFullscreen) return;
 
       if (event.key === ' ' && tagName !== 'button') {
         event.preventDefault();
@@ -129,8 +130,14 @@ export function PatternDetail({
 
       {pattern.rhythm ? <KaraokeTrack pattern={pattern} /> : null}
 
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
-        <PatternImageViewer pattern={pattern} />
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <PatternImageViewer
+          pattern={pattern}
+          onPrevious={goPrevious}
+          onNext={goNext}
+          hasPrevious={Boolean(neighbors.previous)}
+          hasNext={Boolean(neighbors.next)}
+        />
         <aside className="space-y-4 xl:sticky xl:top-24 xl:self-start">
           <PracticePanel pattern={pattern} transport={transport} />
           <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">

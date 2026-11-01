@@ -93,7 +93,6 @@ function App() {
       <main className="mx-auto w-full max-w-7xl space-y-6 px-4 py-6 sm:px-6 lg:py-8">
         {viewMode === 'detail' && selectedPattern ? (
           <PatternDetail
-            key={selectedPattern.id}
             pattern={selectedPattern}
             isFavorite={isFavorite(selectedPattern.id)}
             onToggleFavorite={toggleFavorite}

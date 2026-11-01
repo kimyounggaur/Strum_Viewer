@@ -1,4 +1,5 @@
 import { Heart, Play, Square, Star } from 'lucide-react';
+import { useState } from 'react';
 import { categoryById } from '../../data/strumCategories';
 import type { StrumPattern } from '../../data/strumTypes';
 import { IconButton } from '../../components/ui/IconButton';
@@ -27,6 +28,7 @@ export function PatternCard({
   isPreviewing = false,
 }: PatternCardProps) {
   const category = categoryById[pattern.categoryId];
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <article
@@ -42,20 +44,30 @@ export function PatternCard({
         aria-label={`${pattern.title} 상세 보기`}
       >
         <div
-          className="flex h-36 items-center justify-center overflow-hidden rounded-lg border border-slate-100 bg-white"
-          onContextMenu={(event) => event.preventDefault()}
-          onDragStart={(event) => event.preventDefault()}
+          className={[
+            'flex h-36 items-center justify-center overflow-hidden rounded-lg border border-slate-100',
+            loaded ? 'bg-white' : 'animate-pulse bg-slate-100',
+          ].join(' ')}
         >
           <img
             src={pattern.imageSrc}
             alt={`${pattern.title} 스트럼 패턴 악보`}
+            width={pattern.width}
+            height={pattern.height}
             loading="lazy"
+            decoding="async"
             draggable={false}
-            className="max-h-full max-w-full object-contain"
-            onContextMenu={(event) => event.preventDefault()}
-            onDragStart={(event) => event.preventDefault()}
+            className={[
+              'max-h-full max-w-full object-contain transition-opacity duration-150',
+              loaded ? 'opacity-100' : 'opacity-0',
+            ].join(' ')}
+            onLoad={() => setLoaded(true)}
             onError={(event) => {
-              event.currentTarget.src = '/strums/placeholders/pattern-placeholder.svg';
+              const placeholder = '/strums/placeholders/pattern-placeholder.svg';
+              if (!event.currentTarget.src.endsWith(placeholder)) {
+                event.currentTarget.src = placeholder;
+              }
+              setLoaded(true);
             }}
           />
         </div>
