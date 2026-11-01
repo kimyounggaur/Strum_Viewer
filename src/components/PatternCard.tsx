@@ -81,7 +81,10 @@ export function PatternCard({
               active={isFavorite}
               onClick={() => onToggleFavorite(pattern.id)}
             >
-              <Heart className={['h-4 w-4', isFavorite ? 'fill-current' : ''].join(' ')} aria-hidden="true" />
+              <Heart
+                className={['h-4 w-4', isFavorite ? 'fill-current' : ''].join(' ')}
+                aria-hidden="true"
+              />
             </IconButton>
           </div>
         </div>

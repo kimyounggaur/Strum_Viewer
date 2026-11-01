@@ -22,6 +22,8 @@ export function PracticePanel({ pattern, onTransportChange }: PracticePanelProps
   const [countIn, setCountIn] = useState(false);
 
   useEffect(() => {
+    // TODO(Phase 1 / PR-1.4): 메트로놈 경로 제거와 함께 삭제된다.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMetronomeBpm(pattern.recommendedBpm.default);
   }, [pattern.id, pattern.recommendedBpm.default]);
 

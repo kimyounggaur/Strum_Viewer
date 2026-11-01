@@ -90,7 +90,9 @@ function App() {
 
   const categoryTitle = useMemo(() => {
     if (selectedCategoryId === 'all') return '전체 패턴';
-    return strumCategories.find((category) => category.id === selectedCategoryId)?.labelKo ?? '패턴';
+    return (
+      strumCategories.find((category) => category.id === selectedCategoryId)?.labelKo ?? '패턴'
+    );
   }, [selectedCategoryId]);
 
   return (
@@ -124,7 +126,10 @@ function App() {
             <section className="space-y-4" aria-labelledby="gallery-heading">
               <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <h2 id="gallery-heading" className="text-xl font-black text-slate-950 sm:text-2xl">
+                  <h2
+                    id="gallery-heading"
+                    className="text-xl font-black text-slate-950 sm:text-2xl"
+                  >
                     {searchTerm ? '검색 결과' : categoryTitle}
                   </h2>
                   <p className="mt-1 text-sm text-slate-500">
@@ -132,7 +137,11 @@ function App() {
                   </p>
                 </div>
               </div>
-              <FilterBar sortMode={sortMode} onSortModeChange={setSortMode} resultCount={filteredPatterns.length} />
+              <FilterBar
+                sortMode={sortMode}
+                onSortModeChange={setSortMode}
+                resultCount={filteredPatterns.length}
+              />
               <PatternGallery
                 patterns={filteredPatterns}
                 favorites={favoriteSet}
@@ -180,7 +189,10 @@ function HomeSections({
             onPreview={onPreview}
           />
         ) : (
-          <EmptyState title="아직 최근 본 패턴이 없습니다" description="카테고리에서 패턴을 열면 이곳에 빠르게 모입니다." />
+          <EmptyState
+            title="아직 최근 본 패턴이 없습니다"
+            description="카테고리에서 패턴을 열면 이곳에 빠르게 모입니다."
+          />
         )}
       </section>
 
@@ -197,7 +209,10 @@ function HomeSections({
             onPreview={onPreview}
           />
         ) : (
-          <EmptyState title="즐겨찾기를 추가해 보세요" description="자주 연습할 패턴에 하트를 눌러 모아둘 수 있습니다." />
+          <EmptyState
+            title="즐겨찾기를 추가해 보세요"
+            description="자주 연습할 패턴에 하트를 눌러 모아둘 수 있습니다."
+          />
         )}
       </section>
     </div>

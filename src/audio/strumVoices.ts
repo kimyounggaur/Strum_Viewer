@@ -71,12 +71,20 @@ export function playStrum(
     return;
   }
 
-  const frequencies = stroke.dir === 'up' ? [...profile.frequencies].reverse() : profile.frequencies;
+  const frequencies =
+    stroke.dir === 'up' ? [...profile.frequencies].reverse() : profile.frequencies;
   const spacing = instrument === 'ukulele' ? 0.008 : 0.01;
   const gain = profile.gain * (stroke.accent ? 1.45 : 1);
 
   frequencies.forEach((frequency, index) => {
-    playString(context, filter, frequency, time + index * spacing, gain / frequencies.length, profile.decay);
+    playString(
+      context,
+      filter,
+      frequency,
+      time + index * spacing,
+      gain / frequencies.length,
+      profile.decay,
+    );
   });
 }
 

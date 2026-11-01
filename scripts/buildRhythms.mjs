@@ -78,7 +78,8 @@ async function main() {
 
   entries.sort(
     (a, b) =>
-      CATEGORY_ORDER.indexOf(a.categoryId) - CATEGORY_ORDER.indexOf(b.categoryId) || a.exNo - b.exNo,
+      CATEGORY_ORDER.indexOf(a.categoryId) - CATEGORY_ORDER.indexOf(b.categoryId) ||
+      a.exNo - b.exNo,
   );
 
   const stringifyStroke = (s) => {
@@ -106,9 +107,7 @@ async function main() {
     return lines.join('\n');
   };
 
-  const body = entries
-    .map((e) => `  '${e.id}': {\n${stringifyRhythm(e.rhythm)}\n  },`)
-    .join('\n');
+  const body = entries.map((e) => `  '${e.id}': {\n${stringifyRhythm(e.rhythm)}\n  },`).join('\n');
 
   const out = `import type { StrumRhythm } from './strumTypes';
 

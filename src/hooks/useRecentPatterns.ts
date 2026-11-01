@@ -9,7 +9,9 @@ export function useRecentPatterns() {
   const recentSet = useMemo(() => new Set(recentPatterns), [recentPatterns]);
 
   function rememberPattern(patternId: string) {
-    setRecentPatterns([patternId, ...recentPatterns.filter((id) => id !== patternId)].slice(0, recentLimit));
+    setRecentPatterns(
+      [patternId, ...recentPatterns.filter((id) => id !== patternId)].slice(0, recentLimit),
+    );
   }
 
   return {

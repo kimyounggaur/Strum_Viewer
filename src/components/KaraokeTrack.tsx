@@ -32,7 +32,12 @@ function xAt(t: number): number {
   return (pad + (1 - 2 * pad) * Math.min(1, Math.max(0, t))) * 100;
 }
 
-export function KaraokeTrack({ pattern, progress, activeStrokeIndex, isPlaying }: KaraokeTrackProps) {
+export function KaraokeTrack({
+  pattern,
+  progress,
+  activeStrokeIndex,
+  isPlaying,
+}: KaraokeTrackProps) {
   const rhythm = pattern.rhythm;
 
   if (!rhythm) {
@@ -48,13 +53,16 @@ export function KaraokeTrack({ pattern, progress, activeStrokeIndex, isPlaying }
         <h3 className="text-sm font-black text-slate-900">재생 트랙 · 스트럼 모드</h3>
         <div className="flex items-center gap-3 text-xs font-bold">
           <span className="inline-flex items-center gap-1 text-slate-400">
-            <span className="h-2.5 w-2.5 rounded-full bg-slate-300" aria-hidden="true" />예정
+            <span className="h-2.5 w-2.5 rounded-full bg-slate-300" aria-hidden="true" />
+            예정
           </span>
           <span className="inline-flex items-center gap-1 text-amber-600">
-            <span className="h-2.5 w-2.5 rounded-full bg-amber-400" aria-hidden="true" />지금
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-400" aria-hidden="true" />
+            지금
           </span>
           <span className="inline-flex items-center gap-1 text-teal-600">
-            <span className="h-2.5 w-2.5 rounded-full bg-teal-500" aria-hidden="true" />지나감
+            <span className="h-2.5 w-2.5 rounded-full bg-teal-500" aria-hidden="true" />
+            지나감
           </span>
         </div>
       </div>
@@ -85,7 +93,8 @@ export function KaraokeTrack({ pattern, progress, activeStrokeIndex, isPlaying }
 
           {rhythm.strokes.map((stroke, index) => {
             const state = noteState(index, activeStrokeIndex, isPlaying);
-            const Icon = stroke.dir === 'up' ? ArrowUp : stroke.dir === 'down' ? ArrowDown : VolumeX;
+            const Icon =
+              stroke.dir === 'up' ? ArrowUp : stroke.dir === 'down' ? ArrowDown : VolumeX;
 
             return (
               <div

@@ -70,7 +70,11 @@ export class AudioEngine {
 
     if (options.countIn) {
       for (let beat = 0; beat < countInBeats; beat += 1) {
-        playMetronomeClick(context, context.currentTime + 0.05 + beat * secPerBeat(this.bpm), beat === 0);
+        playMetronomeClick(
+          context,
+          context.currentTime + 0.05 + beat * secPerBeat(this.bpm),
+          beat === 0,
+        );
       }
     }
 
@@ -152,7 +156,10 @@ export class AudioEngine {
     if (barStartTime <= context.currentTime + 0.01) {
       activate();
     } else {
-      const id = window.setTimeout(activate, Math.max(0, (barStartTime - context.currentTime) * 1000));
+      const id = window.setTimeout(
+        activate,
+        Math.max(0, (barStartTime - context.currentTime) * 1000),
+      );
       this.timeoutIds.push(id);
     }
 

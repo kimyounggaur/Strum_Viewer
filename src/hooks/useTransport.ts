@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect, react-hooks/refs, react-hooks/immutability */
+// TODO(Phase 1 / PR-1.3): 엔진 이벤트 구독 + transportClock 구조로 재작성하면서 위 규칙 위반을 해소한다.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AudioEngine } from '../audio/AudioEngine';
 import { schedulePattern } from '../audio/schedulePattern';
@@ -62,13 +64,17 @@ export function useTransport(pattern: StrumPattern): TransportState {
 
     if (context && rhythm && latestRef.current.isPlaying) {
       const duration = loopDuration(rhythm, latestRef.current.bpm);
-      const rawProgress = duration > 0 ? (context.currentTime - engine.currentBarStartTime) / duration : 0;
+      const rawProgress =
+        duration > 0 ? (context.currentTime - engine.currentBarStartTime) / duration : 0;
       const nextProgress = Math.min(1, Math.max(0, rawProgress));
       setProgress(nextProgress);
 
       const elapsed = nextProgress * duration;
       const events = schedulePattern(currentPattern, latestRef.current.bpm);
-      const active = events.reduce((last, event, index) => (event.timeInBar <= elapsed ? index : last), -1);
+      const active = events.reduce(
+        (last, event, index) => (event.timeInBar <= elapsed ? index : last),
+        -1,
+      );
       setActiveStrokeIndex(active);
     }
 

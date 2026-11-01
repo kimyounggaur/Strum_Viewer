@@ -139,13 +139,25 @@ export function PatternImageViewer({
     <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
       <div className="flex flex-col gap-3 border-b border-slate-200 p-3 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap gap-2">
-          <IconButton label="폭 맞춤" active={fitMode === 'fit-width'} onClick={() => applyFit('fit-width')}>
+          <IconButton
+            label="폭 맞춤"
+            active={fitMode === 'fit-width'}
+            onClick={() => applyFit('fit-width')}
+          >
             <MoveHorizontal className="h-4 w-4" aria-hidden="true" />
           </IconButton>
-          <IconButton label="높이 맞춤" active={fitMode === 'fit-height'} onClick={() => applyFit('fit-height')}>
+          <IconButton
+            label="높이 맞춤"
+            active={fitMode === 'fit-height'}
+            onClick={() => applyFit('fit-height')}
+          >
             <Maximize2 className="h-4 w-4" aria-hidden="true" />
           </IconButton>
-          <IconButton label="실제 크기" active={fitMode === 'actual'} onClick={() => applyFit('actual')}>
+          <IconButton
+            label="실제 크기"
+            active={fitMode === 'actual'}
+            onClick={() => applyFit('actual')}
+          >
             <Expand className="h-4 w-4" aria-hidden="true" />
           </IconButton>
           <IconButton label="축소" onClick={() => updateZoom(zoom - 0.1)}>
@@ -173,7 +185,9 @@ export function PatternImageViewer({
             onChange={(event) => updateZoom(Number(event.target.value))}
             className="min-w-0 flex-1 accent-teal-600"
           />
-          <span className="w-14 text-right text-sm font-black text-slate-600">{Math.round(zoom * 100)}%</span>
+          <span className="w-14 text-right text-sm font-black text-slate-600">
+            {Math.round(zoom * 100)}%
+          </span>
           <IconButton label="전체화면" onClick={openFullscreen}>
             <Maximize2 className="h-4 w-4" aria-hidden="true" />
           </IconButton>

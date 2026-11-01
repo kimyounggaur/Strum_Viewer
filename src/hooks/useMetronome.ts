@@ -31,7 +31,11 @@ function labelsFor(pattern: StrumPattern): string[] {
     return ['1', '&', 'a', '2', '&', 'a'];
   }
 
-  if (pattern.timeSignature === '12/8' || pattern.feel === 'triplet' || pattern.feel === 'shuffle') {
+  if (
+    pattern.timeSignature === '12/8' ||
+    pattern.feel === 'triplet' ||
+    pattern.feel === 'shuffle'
+  ) {
     return ['1', '&', 'a', '2', '&', 'a', '3', '&', 'a', '4', '&', 'a'];
   }
 
@@ -62,7 +66,13 @@ function playClick(context: AudioContext, time: number, accent: boolean, sound: 
   oscillator.stop(time + 0.07);
 }
 
-export function useMetronome({ bpm, pattern, accent, sound, countIn }: MetronomeOptions): MetronomeState {
+export function useMetronome({
+  bpm,
+  pattern,
+  accent,
+  sound,
+  countIn,
+}: MetronomeOptions): MetronomeState {
   const [isRunning, setIsRunning] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const contextRef = useRef<AudioContext | null>(null);
@@ -93,7 +103,12 @@ export function useMetronome({ bpm, pattern, accent, sound, countIn }: Metronome
     const context = contextRef.current;
     if (!context) return;
 
-    const { bpm: liveBpm, pattern: livePattern, accent: liveAccent, sound: liveSound } = optionsRef.current;
+    const {
+      bpm: liveBpm,
+      pattern: livePattern,
+      accent: liveAccent,
+      sound: liveSound,
+    } = optionsRef.current;
     const steps = labelsFor(livePattern).length;
     const subdivisions = beatSteps(livePattern);
     const stepSeconds = 60 / liveBpm / subdivisions;
@@ -103,9 +118,12 @@ export function useMetronome({ bpm, pattern, accent, sound, countIn }: Metronome
       const strong = liveAccent && step % subdivisions === 0;
       playClick(context, nextTickRef.current, strong, liveSound);
 
-      window.setTimeout(() => {
-        setCurrentStep(step);
-      }, Math.max(0, (nextTickRef.current - context.currentTime) * 1000));
+      window.setTimeout(
+        () => {
+          setCurrentStep(step);
+        },
+        Math.max(0, (nextTickRef.current - context.currentTime) * 1000),
+      );
 
       stepRef.current += 1;
       nextTickRef.current += stepSeconds;
@@ -120,8 +138,9 @@ export function useMetronome({ bpm, pattern, accent, sound, countIn }: Metronome
     await context.resume();
 
     const { bpm: liveBpm, pattern: livePattern, countIn: liveCountIn } = optionsRef.current;
-    const subdivisions = beatSteps(livePattern);
-    const countInDelay = liveCountIn ? (60 / liveBpm) * (livePattern.timeSignature === '3/4' ? 3 : 4) : 0.05;
+    const countInDelay = liveCountIn
+      ? (60 / liveBpm) * (livePattern.timeSignature === '3/4' ? 3 : 4)
+      : 0.05;
 
     nextTickRef.current = context.currentTime + countInDelay;
     stepRef.current = 0;
@@ -129,7 +148,8 @@ export function useMetronome({ bpm, pattern, accent, sound, countIn }: Metronome
     setIsRunning(true);
 
     if (liveCountIn) {
-      const beats = livePattern.timeSignature === '3/4' ? 3 : livePattern.timeSignature === '6/8' ? 2 : 4;
+      const beats =
+        livePattern.timeSignature === '3/4' ? 3 : livePattern.timeSignature === '6/8' ? 2 : 4;
       for (let beat = 0; beat < beats; beat += 1) {
         playClick(context, context.currentTime + beat * (60 / liveBpm), beat === 0, true);
       }

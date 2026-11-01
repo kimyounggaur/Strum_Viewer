@@ -27,6 +27,7 @@ export function getNeighborPatterns(pattern: StrumPattern): {
 
   return {
     previous: index > 0 ? categoryPatterns[index - 1] : undefined,
-    next: index >= 0 && index < categoryPatterns.length - 1 ? categoryPatterns[index + 1] : undefined,
+    next:
+      index >= 0 && index < categoryPatterns.length - 1 ? categoryPatterns[index + 1] : undefined,
   };
 }

@@ -19,8 +19,7 @@ export function StrokeLegend({ pattern }: StrokeLegendProps) {
           다운
         </span>
         <span className="inline-flex items-center gap-2">
-          <ArrowUp className="h-4 w-4 text-indigo-600" aria-hidden="true" />
-          업
+          <ArrowUp className="h-4 w-4 text-indigo-600" aria-hidden="true" />업
         </span>
         <span className="inline-flex items-center gap-2">
           <CircleDotDashed className="h-4 w-4 text-amber-600" aria-hidden="true" />

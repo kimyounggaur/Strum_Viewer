@@ -69,7 +69,9 @@ export function useFilteredPatterns({
       }
 
       if (sortMode === 'difficulty') {
-        return difficultyRank[a.difficulty] - difficultyRank[b.difficulty] || a.exerciseNo - b.exerciseNo;
+        return (
+          difficultyRank[a.difficulty] - difficultyRank[b.difficulty] || a.exerciseNo - b.exerciseNo
+        );
       }
 
       return a.exerciseNo - b.exerciseNo;

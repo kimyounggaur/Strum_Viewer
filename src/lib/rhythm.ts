@@ -59,7 +59,10 @@ export function cellsInBar(rhythm: StrumRhythm): number {
 }
 
 export function progressToStep(progress: number, rhythm: StrumRhythm): number {
-  return Math.min(cellsInLoop(rhythm) - 1, Math.floor(clamp(progress, 0, 0.9999) * cellsInLoop(rhythm)));
+  return Math.min(
+    cellsInLoop(rhythm) - 1,
+    Math.floor(clamp(progress, 0, 0.9999) * cellsInLoop(rhythm)),
+  );
 }
 
 export function strokeXNorm(stroke: Stroke, rhythm: StrumRhythm): number {
@@ -93,7 +96,7 @@ export function formatBeatLabels(rhythm: StrumRhythm): string[] {
             : eighthLabels;
 
     for (let sub = 0; sub < rhythm.subdivision; sub += 1) {
-      labels.push(sub === 0 ? base : source[sub] ?? String(sub + 1));
+      labels.push(sub === 0 ? base : (source[sub] ?? String(sub + 1)));
     }
   }
 

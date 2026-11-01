@@ -35,7 +35,11 @@ export function MetronomeControls({
           <h3 className="text-sm font-black text-slate-900">메트로놈</h3>
           <p className="mt-1 text-xs font-semibold text-slate-500">원본 PNG 기준 Core 연습</p>
         </div>
-        <IconButton label={metronome.isRunning ? '정지' : '시작'} active={metronome.isRunning} onClick={metronome.toggle}>
+        <IconButton
+          label={metronome.isRunning ? '정지' : '시작'}
+          active={metronome.isRunning}
+          onClick={metronome.toggle}
+        >
           {metronome.isRunning ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
         </IconButton>
       </div>
@@ -65,11 +69,19 @@ export function MetronomeControls({
       </div>
 
       <div className="mt-4 grid grid-cols-3 gap-2">
-        <button type="button" className={toggleClass(accent)} onClick={() => onAccentChange(!accent)}>
+        <button
+          type="button"
+          className={toggleClass(accent)}
+          onClick={() => onAccentChange(!accent)}
+        >
           <Timer className="h-4 w-4" aria-hidden="true" />
           강박
         </button>
-        <button type="button" className={toggleClass(countIn)} onClick={() => onCountInChange(!countIn)}>
+        <button
+          type="button"
+          className={toggleClass(countIn)}
+          onClick={() => onCountInChange(!countIn)}
+        >
           <Timer className="h-4 w-4" aria-hidden="true" />
           카운트
         </button>

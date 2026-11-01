@@ -12,13 +12,7 @@ export type StrumCategoryId =
 export type TimeSignature = '4/4' | '3/4' | '12/8' | '6/8';
 
 export type StrumFeel =
-  | 'straight'
-  | 'sixteenth'
-  | 'triplet'
-  | 'shuffle'
-  | 'slow'
-  | 'latin'
-  | 'country';
+  'straight' | 'sixteenth' | 'triplet' | 'shuffle' | 'slow' | 'latin' | 'country';
 
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
 
