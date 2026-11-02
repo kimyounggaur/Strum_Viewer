@@ -28,7 +28,7 @@ function openDatabase(): Promise<IDBDatabase> {
     };
 
     request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
+    request.onerror = () => reject(request.error ?? new Error('IndexedDB 요청이 실패했습니다.'));
   });
 }
 
@@ -53,7 +53,8 @@ export async function saveCustomPattern(input: CustomPatternInput): Promise<Cust
     const transaction = database.transaction(storeName, 'readwrite');
     transaction.objectStore(storeName).put(record);
     transaction.oncomplete = () => resolve();
-    transaction.onerror = () => reject(transaction.error);
+    transaction.onerror = () =>
+      reject(transaction.error ?? new Error('IndexedDB 트랜잭션이 실패했습니다.'));
   });
 
   database.close();
@@ -67,7 +68,7 @@ export async function listCustomPatterns(): Promise<CustomPatternRecord[]> {
     const transaction = database.transaction(storeName, 'readonly');
     const request = transaction.objectStore(storeName).getAll();
     request.onsuccess = () => resolve(request.result as CustomPatternRecord[]);
-    request.onerror = () => reject(request.error);
+    request.onerror = () => reject(request.error ?? new Error('IndexedDB 요청이 실패했습니다.'));
   });
 
   database.close();

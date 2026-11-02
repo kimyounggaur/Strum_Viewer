@@ -1,134 +1,56 @@
-import type { StrumCategory } from './strumTypes';
+import rawCategories from './categories.json';
+import type { CountingFeel, StrumCategory, StrumCategoryId, TimeSignature } from './strumTypes';
 
-export const strumCategories: StrumCategory[] = [
-  {
-    id: 'sixteen-beat-variation',
-    labelKo: '16비트 변형',
-    labelEn: '16Beat Variation',
-    shortLabel: '16Beat',
-    description: '팝, 발라드, 모던 워십에서 자주 쓰는 16분음표 기반 변형 패턴',
-    timeSignature: '4/4',
-    feel: 'sixteenth',
-    color: '#14b8a6',
-    accentColor: '#f97316',
-    patternCount: 12,
-    recommendedBpm: { min: 60, max: 120, default: 82 },
-    tags: ['16beat', 'variation', 'pop', 'worship'],
-  },
-  {
-    id: 'three-four',
-    labelKo: '4분의 3박',
-    labelEn: '3/4 Strum',
-    shortLabel: '3/4',
-    description: '왈츠 계열 곡에 어울리는 3박 스트럼 패턴',
-    timeSignature: '3/4',
-    feel: 'straight',
-    color: '#f97316',
-    accentColor: '#2563eb',
-    patternCount: 13,
-    recommendedBpm: { min: 60, max: 130, default: 90 },
-    tags: ['3/4', 'waltz'],
-  },
-  {
-    id: 'twelve-eight',
-    labelKo: '8분의 12박',
-    labelEn: '12/8 Strum',
-    shortLabel: '12/8',
-    description: '느린 발라드와 블루스 감성에 어울리는 12/8 패턴',
-    timeSignature: '12/8',
-    feel: 'triplet',
-    color: '#6366f1',
-    accentColor: '#22c55e',
-    patternCount: 16,
-    recommendedBpm: { min: 45, max: 100, default: 66 },
-    tags: ['12/8', 'triplet', 'ballad'],
-  },
-  {
-    id: 'six-eight',
-    labelKo: '8분의 6박',
-    labelEn: '6/8 Strum',
-    shortLabel: '6/8',
-    description: '두 박 큰 흐름으로 연습하기 좋은 6/8 스트럼',
-    timeSignature: '6/8',
-    feel: 'triplet',
-    color: '#0ea5e9',
-    accentColor: '#f59e0b',
-    patternCount: 8,
-    recommendedBpm: { min: 50, max: 120, default: 76 },
-    tags: ['6/8', 'triplet'],
-  },
-  {
-    id: 'shuffle',
-    labelKo: '셔플',
-    labelEn: 'Shuffle',
-    shortLabel: 'Shuffle',
-    description: '스윙감 있는 셔플 리듬 패턴',
-    timeSignature: '4/4',
-    feel: 'shuffle',
-    color: '#a855f7',
-    accentColor: '#eab308',
-    patternCount: 6,
-    recommendedBpm: { min: 60, max: 140, default: 96 },
-    tags: ['shuffle', 'swing'],
-  },
-  {
-    id: 'slow-gogo',
-    labelKo: '슬로우 고고',
-    labelEn: 'Slow GoGo',
-    shortLabel: 'Slow GoGo',
-    description: '느린 템포의 안정적인 4/4 고고 패턴',
-    timeSignature: '4/4',
-    feel: 'slow',
-    color: '#22c55e',
-    accentColor: '#ef4444',
-    patternCount: 3,
-    recommendedBpm: { min: 55, max: 105, default: 74 },
-    tags: ['slow', 'gogo'],
-  },
-  {
-    id: 'slow-rock',
-    labelKo: '슬로우 락',
-    labelEn: 'Slow Rock',
-    shortLabel: 'Slow Rock',
-    description: '셋잇단음표 흐름과 긴 호흡을 익히는 슬로우 락 패턴',
-    timeSignature: '4/4',
-    feel: 'triplet',
-    color: '#334155',
-    accentColor: '#fb7185',
-    patternCount: 12,
-    recommendedBpm: { min: 45, max: 95, default: 64 },
-    tags: ['slow rock', 'triplet'],
-  },
-  {
-    id: 'calypso',
-    labelKo: '칼립소',
-    labelEn: 'Calypso',
-    shortLabel: 'Calypso',
-    description: '싱코페이션과 업스트로크 감각을 익히는 칼립소 패턴',
-    timeSignature: '4/4',
-    feel: 'latin',
-    color: '#f43f5e',
-    accentColor: '#06b6d4',
-    patternCount: 3,
-    recommendedBpm: { min: 70, max: 140, default: 104 },
-    tags: ['calypso', 'latin', 'syncopation'],
-  },
-  {
-    id: 'country',
-    labelKo: '컨트리',
-    labelEn: 'Country',
-    shortLabel: 'Country',
-    description: '경쾌한 다운/업 흐름과 악센트를 연습하는 컨트리 패턴',
-    timeSignature: '4/4',
-    feel: 'country',
-    color: '#ca8a04',
-    accentColor: '#16a34a',
-    patternCount: 3,
-    recommendedBpm: { min: 70, max: 150, default: 112 },
-    tags: ['country', 'accent'],
-  },
-];
+/**
+ * 카테고리 정의의 원본은 `categories.json` 하나다(빌드 스크립트와 공용).
+ * JSON은 타입이 넓게 추론되므로 앱 로드 시 한 번 검증해 좁힌다.
+ */
+const categoryIds = new Set<StrumCategoryId>([
+  'sixteen-beat-variation',
+  'three-four',
+  'twelve-eight',
+  'six-eight',
+  'shuffle',
+  'slow-gogo',
+  'slow-rock',
+  'calypso',
+  'country',
+]);
+const timeSignatures = new Set<TimeSignature>(['4/4', '3/4', '12/8', '6/8']);
+const countingFeels = new Set<CountingFeel>([
+  'straight-8',
+  'straight-16',
+  'swing',
+  'triplet',
+  'compound',
+]);
+
+function toCategory(raw: (typeof rawCategories)[number]): StrumCategory {
+  if (!categoryIds.has(raw.id as StrumCategoryId)) {
+    throw new Error(
+      `categories.json: 알 수 없는 id "${raw.id}" (strumTypes.ts의 StrumCategoryId에 추가)`,
+    );
+  }
+  if (!timeSignatures.has(raw.timeSignature as TimeSignature)) {
+    throw new Error(`categories.json: ${raw.id} 박자표 "${raw.timeSignature}"`);
+  }
+  if (!countingFeels.has(raw.countingFeel as CountingFeel)) {
+    throw new Error(`categories.json: ${raw.id} countingFeel "${raw.countingFeel}"`);
+  }
+  if (raw.grid.pulseNote !== 'quarter' && raw.grid.pulseNote !== 'dotted-quarter') {
+    throw new Error(`categories.json: ${raw.id} pulseNote "${raw.grid.pulseNote}"`);
+  }
+  return {
+    ...raw,
+    id: raw.id as StrumCategoryId,
+    timeSignature: raw.timeSignature as TimeSignature,
+    countingFeel: raw.countingFeel as CountingFeel,
+    grid: { beatsPerBar: raw.grid.beatsPerBar, pulseNote: raw.grid.pulseNote },
+  };
+}
+
+export const strumCategories: StrumCategory[] = rawCategories.map(toCategory);
 
 export const categoryById = Object.fromEntries(
   strumCategories.map((category) => [category.id, category]),
-) as Record<StrumCategory['id'], StrumCategory>;
+) as Record<StrumCategoryId, StrumCategory>;

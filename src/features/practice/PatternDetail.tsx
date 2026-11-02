@@ -1,0 +1,209 @@
+import { AlertTriangle, ArrowLeft, ArrowRight, ChevronLeft, Heart, Info } from 'lucide-react';
+import { useCallback, useEffect, useRef } from 'react';
+import { getLastNavigationType } from '../../app/useHashRoute';
+import { countingFeelLabel, difficultyLabel } from '../../data/labels';
+import { categoryById } from '../../data/strumCategories';
+import type { StrumPattern } from '../../data/strumTypes';
+import { getNeighborPatterns } from '../../data/patterns';
+import { IconButton } from '../../components/ui/IconButton';
+import { KaraokeTrack } from './KaraokeTrack';
+import { PatternImageViewer } from '../viewer/PatternImageViewer';
+import { PracticePanel } from './PracticePanel';
+import { useTransport } from '../../hooks/useTransport';
+
+type PatternDetailProps = {
+  pattern: StrumPattern;
+  isFavorite: boolean;
+  onToggleFavorite: (patternId: string) => void;
+  onBack: () => void;
+  onOpenPattern: (patternId: string) => void;
+};
+
+export function PatternDetail({
+  pattern,
+  isFavorite,
+  onToggleFavorite,
+  onBack,
+  onOpenPattern,
+}: PatternDetailProps) {
+  const category = categoryById[pattern.categoryId];
+  const approx = pattern.rhythm?.confidence === 'approx';
+  const neighbors = getNeighborPatterns(pattern);
+  // 패턴이 바뀌면 useTransport가 이전 재생을 멈추고 새 패턴을 엔진에 올린다.
+  // (재마운트하지 않으므로 뷰어의 전체화면·확대 상태가 유지된다)
+  const transport = useTransport(pattern);
+  const { toggle } = transport;
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+
+  // 목록에서 들어왔으면 제목으로 포커스를 옮겨 스크린리더가 새 화면을 읽게 한다.
+  useEffect(() => {
+    if (getLastNavigationType() === 'push') {
+      titleRef.current?.focus({ preventScroll: true });
+    }
+  }, []);
+
+  const goPrevious = useCallback(() => {
+    if (neighbors.previous) {
+      onOpenPattern(neighbors.previous.id);
+    }
+  }, [neighbors.previous, onOpenPattern]);
+
+  const goNext = useCallback(() => {
+    if (neighbors.next) {
+      onOpenPattern(neighbors.next.id);
+    }
+  }, [neighbors.next, onOpenPattern]);
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+      const target = event.target as HTMLElement | null;
+      const tagName = target?.tagName.toLowerCase();
+      if (
+        tagName === 'input' ||
+        tagName === 'textarea' ||
+        tagName === 'select' ||
+        target?.isContentEditable
+      ) {
+        return;
+      }
+      // 전체화면 중의 ESC·화살표는 브라우저/뷰어 몫
+      if (document.fullscreenElement || document.documentElement.dataset.viewerFullscreen) return;
+
+      if (event.key === ' ' && tagName !== 'button') {
+        event.preventDefault();
+        void toggle();
+      } else if (event.key === 'Escape') {
+        onBack();
+      } else if (event.key === 'ArrowLeft') {
+        goPrevious();
+      } else if (event.key === 'ArrowRight') {
+        goNext();
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [goNext, goPrevious, onBack, toggle]);
+
+  return (
+    <section className="space-y-4">
+      <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex min-w-0 items-start gap-3">
+          <IconButton label="뒤로" onClick={onBack}>
+            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+          </IconButton>
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-black text-slate-800">
+                <span
+                  className="h-2.5 w-2.5 rounded-full"
+                  style={{ backgroundColor: category.color }}
+                  aria-hidden="true"
+                />
+                {category.shortLabel}
+              </span>
+              {category.shortLabel !== pattern.timeSignature ? (
+                <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
+                  {pattern.timeSignature}
+                </span>
+              ) : null}
+              <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
+                {countingFeelLabel[pattern.countingFeel]}
+              </span>
+              {!pattern.rhythm ? (
+                <span className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600">
+                  메트로놈만
+                </span>
+              ) : approx ? (
+                <span
+                  className="inline-flex items-center gap-1 rounded-lg bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-800"
+                  title="이 패턴의 재생 데이터는 검수 전 근사치라 악보와 다를 수 있습니다."
+                >
+                  <AlertTriangle className="h-3.5 w-3.5" aria-hidden="true" />
+                  재생 데이터 근사치
+                </span>
+              ) : null}
+            </div>
+            <h1
+              ref={titleRef}
+              tabIndex={-1}
+              className="mt-2 text-2xl font-black text-slate-950 outline-none"
+            >
+              {pattern.titleKo}
+            </h1>
+            <p className="mt-1 text-sm text-slate-500">{pattern.title}</p>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          <IconButton label="이전 패턴" onClick={goPrevious} disabled={!neighbors.previous}>
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+          </IconButton>
+          <IconButton label="다음 패턴" onClick={goNext} disabled={!neighbors.next}>
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </IconButton>
+          <IconButton
+            label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'}
+            active={isFavorite}
+            onClick={() => onToggleFavorite(pattern.id)}
+          >
+            <Heart
+              className={['h-4 w-4', isFavorite ? 'fill-current' : ''].join(' ')}
+              aria-hidden="true"
+            />
+          </IconButton>
+        </div>
+      </div>
+
+      {pattern.notes ? (
+        <p className="flex items-start gap-2 rounded-lg border border-sky-200 bg-sky-50 px-4 py-3 text-sm leading-6 text-sky-900">
+          <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          {pattern.notes}
+        </p>
+      ) : null}
+
+      {pattern.rhythm ? <KaraokeTrack pattern={pattern} /> : null}
+
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <PatternImageViewer
+          pattern={pattern}
+          onPrevious={goPrevious}
+          onNext={goNext}
+          hasPrevious={Boolean(neighbors.previous)}
+          hasNext={Boolean(neighbors.next)}
+        />
+        <aside className="space-y-4 xl:sticky xl:top-24 xl:self-start">
+          <PracticePanel pattern={pattern} transport={transport} />
+          <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-600 shadow-sm">
+            <h2 className="font-black text-slate-900">연습 정보</h2>
+            <dl className="mt-3 grid grid-cols-2 gap-2">
+              <dt className="text-slate-500">추천 BPM</dt>
+              <dd className="font-bold text-slate-800">{pattern.recommendedBpm.default}</dd>
+              <dt className="text-slate-500">난이도</dt>
+              <dd className="font-bold text-slate-800">
+                {difficultyLabel[pattern.difficulty]}
+                {pattern.difficultySource === 'auto' ? (
+                  <span
+                    className="ml-1 text-xs font-semibold text-slate-500"
+                    title="리듬 복잡도(싱코페이션·업스트로크·밀도)로 자동 추정한 값입니다."
+                  >
+                    (자동 추정)
+                  </span>
+                ) : null}
+              </dd>
+              <dt className="text-slate-500">세는 느낌</dt>
+              <dd className="font-bold text-slate-800">
+                {countingFeelLabel[pattern.countingFeel]}
+              </dd>
+              <dt className="text-slate-500">원본 파일</dt>
+              <dd className="break-all text-xs font-semibold text-slate-600">
+                {pattern.originalFileName}
+              </dd>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}

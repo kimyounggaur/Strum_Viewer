@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: 데이터 생성 (rhythms + strum assets)
+        run: npm run prepare:data
+
+      - name: 생성물이 최신인지 확인
+        # 실패하면 JSON/원본을 고치고 `npm run prepare:data`를 돌려 생성물을 함께 커밋해야 한다.
+        run: git diff --exit-code -- src/data/strumPatterns.generated.ts src/data/strumRhythms.generated.ts
+
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run format:check
+
+      - name: 테스트 (CI에서는 누락된 스냅샷을 생성하지 않고 실패시킨다)
+        run: npm test
+        env:
+          CI: 'true'
+
+      - run: npm run build

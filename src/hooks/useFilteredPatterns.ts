@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import { difficultyRank } from '../data/labels';
+import { matchesQuery, tokenize } from '../lib/search';
 import { categoryById } from '../data/strumCategories';
 import type { SortMode, StrumCategoryId, StrumPattern } from '../data/strumTypes';
 
@@ -11,12 +13,6 @@ type FilterArgs = {
   recentPatterns: string[];
 };
 
-const difficultyRank: Record<StrumPattern['difficulty'], number> = {
-  beginner: 0,
-  intermediate: 1,
-  advanced: 2,
-};
-
 export function useFilteredPatterns({
   patterns,
   searchTerm,
@@ -26,34 +22,14 @@ export function useFilteredPatterns({
   recentPatterns,
 }: FilterArgs): StrumPattern[] {
   return useMemo(() => {
-    const query = searchTerm.trim().toLowerCase();
+    const tokens = tokenize(searchTerm);
     const recentRank = new Map(recentPatterns.map((id, index) => [id, index]));
 
     const filtered = patterns.filter((pattern) => {
       if (categoryId !== 'all' && pattern.categoryId !== categoryId) {
         return false;
       }
-
-      if (!query) {
-        return true;
-      }
-
-      const category = categoryById[pattern.categoryId];
-      const searchable = [
-        pattern.title,
-        pattern.displayNo,
-        pattern.timeSignature,
-        pattern.feel,
-        pattern.originalFileName,
-        category.labelKo,
-        category.labelEn,
-        category.shortLabel,
-        ...pattern.tags,
-      ]
-        .join(' ')
-        .toLowerCase();
-
-      return searchable.includes(query);
+      return matchesQuery(pattern, categoryById[pattern.categoryId], tokens);
     });
 
     return [...filtered].sort((a, b) => {
@@ -69,7 +45,9 @@ export function useFilteredPatterns({
       }
 
       if (sortMode === 'difficulty') {
-        return difficultyRank[a.difficulty] - difficultyRank[b.difficulty] || a.exerciseNo - b.exerciseNo;
+        return (
+          difficultyRank[a.difficulty] - difficultyRank[b.difficulty] || a.exerciseNo - b.exerciseNo
+        );
       }
 
       return a.exerciseNo - b.exerciseNo;

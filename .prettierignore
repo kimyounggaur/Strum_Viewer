@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+public/strums
+src/data/*.generated.ts
+package-lock.json
+docs
+스트럼 Source
+*.md
